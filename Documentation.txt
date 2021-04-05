@@ -13,3 +13,12 @@ Plan & deadlines:
 Progress:
 25.3.2021 Git repo template
 5.4.2021 Project initialization
+-Otto L- 2/30h
+--------------
+npm init to server B
+npm init to server B
+Changing code --> https://moodle.tuni.fi/mod/page/view.php?id=1025697
+Implementing Server A
+Implementing Server B
+Implementing Swagger API --> backend/nodejs-server-server-generated
+Dockerfiles started
