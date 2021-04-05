@@ -1,0 +1,9 @@
+git@course-gitlab.tuni.fi:webarch-2021/losers-and-rejects-group.git
+
+Otto Leiwo H191452 otto.leiwo@tuni.fi
+
+----------------------------------------------------------------------------
+
+Progress:
+25.3.2021 Git repo template
+5.4.2021 Project initialization

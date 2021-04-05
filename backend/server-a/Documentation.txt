@@ -1,0 +1,15 @@
+git@course-gitlab.tuni.fi:webarch-2021/losers-and-rejects-group.git
+
+Otto Leiwo H191452 otto.leiwo@tuni.fi
+
+----------------------------------------------------------------------------
+Plan & deadlines:
+9.4.2021 Server A
+16.4.2021 queue & Server B
+23.4.2021 Frontend
+29.4.2021 Finalization
+
+
+Progress:
+25.3.2021 Git repo template
+5.4.2021 Project initialization
