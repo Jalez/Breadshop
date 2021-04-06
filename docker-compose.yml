@@ -14,7 +14,7 @@ services:
   # server-a is based on the Docker image the groups produce and build themselves.
   server-a:
     # Change the image information to match your server A image
-    image: # $USERNAME/$IMAGENAME:$TAG, something like group000/node-swagger:3a
+    image: losers-and-rejects-group_server-a:latest # $USERNAME/$IMAGENAME:$TAG, something like group000/node-swagger:3a
     # 'depends_on' and 'command' are  to be used when used
     # with RabbitMQ service in this file. 'depends_on' must be set
     # to RabbitMQ service's name from this file, and 'command'
