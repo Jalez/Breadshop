@@ -2,6 +2,8 @@ git@course-gitlab.tuni.fi:webarch-2021/losers-and-rejects-group.git
 
 Otto Leiwo H191452 otto.leiwo@tuni.fi
 
+Jaakko Rajala K428219 jaakko.rajala@tuni.fi
+
 ----------------------------------------------------------------------------
 Plan & deadlines:
 9.4.2021 Server A
@@ -22,3 +24,9 @@ Implementing Server A
 Implementing Server B
 Implementing Swagger API --> backend/nodejs-server-server-generated
 Dockerfiles started
+---------------
+6.4 Frontend initialization
+- Jaakko R-
+---------------
+npx create-react-app frontend
+add dependencies axios, material-ui
