@@ -16,15 +16,22 @@ services:
   # server-a is based on the Docker image the groups produce and build themselves.
   server-a:
     # Change the image information to match your server A image
-    image: losers-and-rejects-group_server-a:latest # $USERNAME/$IMAGENAME:$TAG, something like group000/node-swagger:3a
+    image: larg/server-a:latest # $USERNAME/$IMAGENAME:$TAG, something like group000/node-swagger:3a
     # 'depends_on' and 'command' are  to be used when used
     # with RabbitMQ service in this file. 'depends_on' must be set
     # to RabbitMQ service's name from this file, and 'command'
     # can be modified to be anything, but what is given should
     # work. Just uncomment them
-    # depends_on:
-    #   -  rapid-runner-rabbit
-    # command: ["./utils/wait-for-it.sh", "rapid-runner-rabbit:5672", "--",  "npm", "start"]
+    depends_on:
+      - rapid-runner-rabbit
+    command:
+      [
+        './utils/wait-for-it.sh',
+        'rapid-runner-rabbit:5672',
+        '--',
+        'npm',
+        'start',
+      ]
     build:
       dockerfile: Dockerfile
       context: ./backend/server-a
@@ -36,19 +43,14 @@ services:
     networks:
       - backend
 
-  # You can base this service on the rabbitmq:3-management Docker Hub image.
-  # You need to expose the RabbitMQ port 5672 to other containers
-  # in this  docker-compose.yml, and for the managent from a Web
-  # server you needs to make the map the RabbitMQ container port
-  # 15672 to host port you wish to use for this.
-  # A set of needed Docker instructions like 'image:' are shown
-  # below, groups should set their values. Groups are free to
-  # CRUD the set of instructions as they see fit.
+  # rabbitmq:3-management Docker Hub image.
   rapid-runner-rabbit:
     image: rabbitmq:3-management
     hostname: rabbitmq
+    # For management, visit http://localhost:15672
+    # (username: guest, password: guest)
     ports:
-      - '5672'
+      - '15672:15672'
     expose:
       - '5672'
     networks:
@@ -60,15 +62,25 @@ services:
   # A set of needed Docker instructions like 'image:' are shown
   # below, groups should set their values. Groups are free to
   # CRUD this set of instructions as they see fit.
-  # server-b:
-  # image:
-  # depends_on:
-  # command: ["./utils/wait-for-it.sh", "rapid-runner-rabbit:5672", "--",  "npm", "start"]
-  # build:
-  #   dockerfile:
-  # context:
-  # expose:
-  # networks:
+  server-b:
+    image: larg/server-b:latest
+    depends_on:
+      - rapid-runner-rabbit
+    command:
+      [
+        './utils/wait-for-it.sh',
+        'rapid-runner-rabbit:5672',
+        '--',
+        'npm',
+        'start',
+      ]
+    networks:
+      - backend
+    expose:
+      - '8080'
+    # build:
+    # dockerfile:
+    # context:
 
   # Your group might want to use a database to store some data
   # You can use any database you wish, PostgreSQL, MySQL and
