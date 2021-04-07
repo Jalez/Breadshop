@@ -24,9 +24,17 @@ Implementing Server A
 Implementing Server B
 Implementing Swagger API --> backend/nodejs-server-server-generated
 Dockerfiles started
+
 ---------------
 6.4 Frontend initialization
 - Jaakko R-
 ---------------
 npx create-react-app frontend
 add dependencies axios, material-ui
+
+---------------
+7.4 Working with docker/docker-compose.yml
+- Jaakko R -
+---------------
+Add rabbitmq compose config
+
