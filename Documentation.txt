@@ -4,6 +4,8 @@ Otto Leiwo H191452 otto.leiwo@tuni.fi
 
 Jaakko Rajala K428219 jaakko.rajala@tuni.fi
 
+Joni Nikki 431160 joni.nikki@tuni.fi
+
 ----------------------------------------------------------------------------
 Plan & deadlines:
 9.4.2021 Server A
@@ -42,5 +44,7 @@ Add server-b compose config
 Built and pushed server-a to larg/server-b:v0.1
 Built and pushed server-b to larg/server-b:v0.1
 ---------------
+
+7.4. Joni N: Moving server A files, adding ignore files
 
 
