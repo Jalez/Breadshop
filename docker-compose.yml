@@ -1,3 +1,5 @@
+# @format
+
 # This is the docker-compose-yml file that must be able to start
 # your group's backend.
 
@@ -7,7 +9,7 @@
 # and this file is ready, you use this file and run it with:
 # `docker-compose up --build`
 
-version: "3"
+version: '3'
 
 services:
   # An example configuration of server A for groups' convenience.
@@ -25,12 +27,12 @@ services:
     # command: ["./utils/wait-for-it.sh", "rapid-runner-rabbit:5672", "--",  "npm", "start"]
     build:
       dockerfile: Dockerfile
-      context:  ./backend/server-a
+      context: ./backend/server-a
     # Here we map the port 8080 of the container to the
     # port 12345 of the host. Container port has been exposed
     # in the node:10 Docker Hub Dockerfile.
     ports:
-      - "12345:8080"
+      - '12345:8080'
     networks:
       - backend
 
@@ -42,11 +44,15 @@ services:
   # A set of needed Docker instructions like 'image:' are shown
   # below, groups should set their values. Groups are free to
   # CRUD the set of instructions as they see fit.
-  # rapid-runner-rabbit:
-  #   image: rabbitmq:3-management
-  #   ports:
-  #   expose:
-  #   networks:
+  rapid-runner-rabbit:
+    image: rabbitmq:3-management
+    hostname: rabbitmq
+    ports:
+      - '5672'
+    expose:
+      - '5672'
+    networks:
+      - backend
 
   # much of the server-b service entry can be copied from server-a
   # service above. server-b directory Dockerfile has more
@@ -55,14 +61,14 @@ services:
   # below, groups should set their values. Groups are free to
   # CRUD this set of instructions as they see fit.
   # server-b:
-      # image:
-      # depends_on:
-      # command: ["./utils/wait-for-it.sh", "rapid-runner-rabbit:5672", "--",  "npm", "start"]
-      # build:
-      #   dockerfile:
-      #   context:
-      # expose:
-      # networks:
+  # image:
+  # depends_on:
+  # command: ["./utils/wait-for-it.sh", "rapid-runner-rabbit:5672", "--",  "npm", "start"]
+  # build:
+  #   dockerfile:
+  # context:
+  # expose:
+  # networks:
 
   # Your group might want to use a database to store some data
   # You can use any database you wish, PostgreSQL, MySQL and
@@ -77,7 +83,7 @@ services:
 # exposed ports.
 networks:
   backend:
-
+    driver: bridge
 # If you use databases for storing information, you can define
 # their volumes here.
 # Documentation: https://docs.docker.com/storage/volumes/
