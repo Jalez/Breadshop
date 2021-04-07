@@ -37,4 +37,10 @@ add dependencies axios, material-ui
 - Jaakko R -
 ---------------
 Add rabbitmq compose config
+Add server-a compose config
+Add server-b compose config
+Built and pushed server-a to larg/server-b:v0.1
+Built and pushed server-b to larg/server-b:v0.1
+---------------
+
 
