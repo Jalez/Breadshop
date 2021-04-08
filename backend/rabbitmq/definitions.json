@@ -1,0 +1,32 @@
+{
+    "exchanges": [
+      {
+        "name": "received-orders",
+        "vhost": "/",
+        "type": "fanout",
+        "durable": true,
+        "auto_delete": false,
+        "internal": false,
+        "arguments": {}
+      }
+    ],
+    "queues": [
+      {
+        "name": "received-orders",
+        "vhost": "/",
+        "durable": true,
+        "auto_delete": false,
+        "arguments": {}
+      }
+    ],
+    "bindings": [
+      {
+        "source": "received-orders",
+        "vhost": "/",
+        "destination": "received-orders",
+        "destination_type": "queue",
+        "routing_key": "*",
+        "arguments": {}
+      }
+    ]
+  }

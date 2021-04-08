@@ -45,7 +45,8 @@ services:
 
   # rabbitmq:3-management Docker Hub image.
   rapid-runner-rabbit:
-    image: rabbitmq:3-management
+    # image: rabbitmq:3-management
+    build: ./backend/rabbitmq
     hostname: rabbitmq
     # For management, visit http://localhost:15672
     # (username: guest, password: guest)
