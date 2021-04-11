@@ -47,4 +47,12 @@ Built and pushed server-b to larg/server-b:v0.1
 
 7.4. Joni N: Moving server A files, adding ignore files
 
+---------------
+11.4 Working with Frontend
+- Jaakko R - 
+---------------
+Add HeadBar-component
+Add ItemList-component
+Add Item-component
+---------------
 
