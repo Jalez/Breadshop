@@ -16,7 +16,7 @@ services:
   # server-a is based on the Docker image the groups produce and build themselves.
   server-a:
     # Change the image information to match your server A image
-    image: larg/server-a:latest # $USERNAME/$IMAGENAME:$TAG, something like group000/node-swagger:3a
+    image: larg/server-a:v0.2 # $USERNAME/$IMAGENAME:$TAG, something like group000/node-swagger:3a
     # 'depends_on' and 'command' are  to be used when used
     # with RabbitMQ service in this file. 'depends_on' must be set
     # to RabbitMQ service's name from this file, and 'command'
@@ -64,7 +64,7 @@ services:
   # below, groups should set their values. Groups are free to
   # CRUD this set of instructions as they see fit.
   server-b:
-    image: larg/server-b:v0.1
+    image: larg/server-b:v0.2
     depends_on:
       - rapid-runner-rabbit
     command:
@@ -72,8 +72,8 @@ services:
         './utils/wait-for-it.sh',
         'rapid-runner-rabbit:5672',
         '--',
-        'npm',
-        'start',
+        'node',
+        'index.js',
       ]
     networks:
       - backend
@@ -103,4 +103,3 @@ networks:
 # Personally I like to look at the database's image's Dockerfile
 # in the Docker Hub to see what directory it uses to store data.
 # volumes:
-  
