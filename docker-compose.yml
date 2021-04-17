@@ -64,7 +64,7 @@ services:
   # below, groups should set their values. Groups are free to
   # CRUD this set of instructions as they see fit.
   server-b:
-    image: larg/server-b:latest
+    image: larg/server-b:v0.1
     depends_on:
       - rapid-runner-rabbit
     command:

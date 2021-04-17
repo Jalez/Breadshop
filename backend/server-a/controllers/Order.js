@@ -6,7 +6,7 @@ var utils = require('../utils/writer.js');
 var Order = require('../service/OrderService');
 var sendTask = require('../rabbit-utils/sendTask.js');
 var receiveTask = require('../rabbit-utils/receiveTask.js');
-/* OLD
+/* OLD addOrder
 module.exports.addOrder = function addOrder (req, res, next) {
   var order = req.swagger.params['order'].value;
   Order.addOrder(order)
@@ -17,7 +17,14 @@ module.exports.addOrder = function addOrder (req, res, next) {
       utils.writeJson(res, response);
     });
 };
-/** */
+*/
+
+
+/**
+ * @description addOrder-controller
+ * @route POST api/order
+ * @access Public
+ */
 module.exports.addOrder = function addOrder(req, res, next) {
 	var order = req.swagger.params['order'].value;
 	Order.addOrder(order)
@@ -55,3 +62,5 @@ module.exports.getOrders = function getOrders(req, res, next) {
 			utils.writeJson(res, response);
 		});
 };
+
+receiveTask.getTask('rapid-runner-rabbit', 'finished-order');
