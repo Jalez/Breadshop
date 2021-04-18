@@ -1,0 +1,16 @@
+stages:
+-build
+
+docker-build-master:
+
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "ottolew" -p "TL9E?LzsYX7x)PY" docker.io
+  script:
+    - docker build --pull -t "index.docker.io/larg/server-b" .
+    - docker push "index.docker.io/larg/server-b"
+    - docker build --pull -t "index.docker.io/larg/server-a" .
+    - docker push "index.docker.io/larg/server-a"
