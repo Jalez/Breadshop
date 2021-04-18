@@ -17,7 +17,7 @@ Plan & deadlines:
 Progress:
 25.3.2021 Git repo template
 5.4.2021 Project initialization
--Otto L- 2/30h
+-Otto L-
 --------------
 npm init to server B
 npm init to server B
@@ -55,4 +55,7 @@ Add HeadBar-component
 Add ItemList-component
 Add Item-component
 ---------------
-
+18.4 Docker auto build when Git commit
+-Otto L- 
+--------------
+Set up trigger for Docker auto build 
