@@ -1,9 +1,9 @@
 variables:
-CI_REGISTRY_USER: "ottolew"
-CI_REGISTRY_PASSWORD: "TL9E?LzsYX7x)PY"
-CI_REGISTRY: "docker.io"
-CI_REGISTRY_IMAGE: "index.docker.io/larg/server-a"
-CI_REGISTRY_IMAGE_B: "index.docker.io/larg/server-b"
+  CI_REGISTRY_USER: "ottolew"
+  CI_REGISTRY_PASSWORD: "TL9E?LzsYX7x)PY"
+  CI_REGISTRY: "docker.io"
+  CI_REGISTRY_IMAGE: "index.docker.io/larg/server-a"
+  CI_REGISTRY_IMAGE_B: "index.docker.io/larg/server-b"
 
 docker-build-master:
 
