@@ -2,6 +2,7 @@
 
 export const ADD_OLD_ORDERS = 'ADD_OLD_ORDERS';
 export const ADD_ORDER = 'ADD_ORDER';
+export const UPDATE_ORDER_STATE = 'UPDATE_ORDER_STATE';
 export const REMOVE_ORDER = 'REMOVE_ORDER';
 
 export const ADD_CART_ITEM = 'ADD_CART_ITEM';

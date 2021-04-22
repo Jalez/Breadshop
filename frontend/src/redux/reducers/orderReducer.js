@@ -1,6 +1,11 @@
 /** @format */
 
-import { ADD_OLD_ORDERS, ADD_ORDER, REMOVE_ORDER } from '../constants';
+import {
+	ADD_OLD_ORDERS,
+	ADD_ORDER,
+	REMOVE_ORDER,
+	UPDATE_ORDER_STATE,
+} from '../constants';
 
 const orderReducer = (state = [], action) => {
 	switch (action.type) {
@@ -10,6 +15,10 @@ const orderReducer = (state = [], action) => {
 			return state.concat(action.payload);
 		case REMOVE_ORDER:
 			return state.filter((item) => item.id !== action.payload.id);
+		case UPDATE_ORDER_STATE:
+			const index = state.findIndex((item) => item.id === action.payload.id);
+			state[index].amount = action.payload.amount;
+			return [...state];
 		default:
 			return state;
 	}
