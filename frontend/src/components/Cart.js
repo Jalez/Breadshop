@@ -6,6 +6,7 @@ import {
 	Drawer,
 	Fab,
 	makeStyles,
+	Paper,
 	Typography,
 } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -14,6 +15,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addNotification, addOrder, emptyCart } from '../redux/actionCreators';
 import CartItem from './CartItem';
+import FlexPaper from './FlexPaper';
 
 const useStyle = makeStyles((theme) => ({
 	drawer: {
@@ -35,13 +37,13 @@ const useStyle = makeStyles((theme) => ({
 			right: '10%',
 		},
 	},
-	margin: {
+	padding: {
 		padding: theme.spacing(2),
 	},
 }));
 
 const Cart = ({ cart, emptyCart, addNotification }) => {
-	const { margin, drawer } = useStyle();
+	const { padding, drawer } = useStyle();
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	let total = 0;
 
@@ -86,7 +88,7 @@ const Cart = ({ cart, emptyCart, addNotification }) => {
 		});
 
 		return (
-			<div className={margin}>
+			<div className={padding}>
 				{cartItems}
 				<Box display='flex' justifyContent='space-between'>
 					<Box>
@@ -104,26 +106,26 @@ const Cart = ({ cart, emptyCart, addNotification }) => {
 			</div>
 		);
 	};
+	return <FlexPaper header='CART'></FlexPaper>;
+	// return (
+	// 	<>
+	// 		<Fab
+	// 			color='primary'
+	// 			aria-label='add'
+	// 			onClick={toggleDrawer()}
+	// 			disabled={cart.length === 0}>
+	// 			<ShoppingCartIcon />
+	// 		</Fab>
 
-	return (
-		<>
-			<Fab
-				color='primary'
-				aria-label='add'
-				onClick={toggleDrawer()}
-				disabled={cart.length === 0}>
-				<ShoppingCartIcon />
-			</Fab>
-
-			<Drawer
-				anchor={'top'}
-				open={drawerOpen}
-				onClose={toggleDrawer()}
-				classes={{ paperAnchorTop: drawer }}>
-				{renderDrawer()}
-			</Drawer>
-		</>
-	);
+	// 		<Drawer
+	// 			anchor={'top'}
+	// 			open={drawerOpen}
+	// 			onClose={toggleDrawer()}
+	// 			classes={{ paperAnchorTop: drawer }}>
+	// 			{renderDrawer()}
+	// 		</Drawer>
+	// 	</>
+	// );
 };
 
 const mapStateToProps = (state) => {

@@ -1,12 +1,12 @@
 /** @format */
 
-import { Box, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import React from 'react';
 import ShopItem from './ShopItem';
 import sandwiches from '../data/sandwiches';
 import FlexPaper from './FlexPaper';
 
-const ShopList = () => {
+const Shop = () => {
 	// console.log(window.location.pathname);
 	return (
 		<FlexPaper header={'MENU'}>
@@ -27,4 +27,4 @@ const ShopList = () => {
 	);
 };
 
-export default ShopList;
+export default Shop;

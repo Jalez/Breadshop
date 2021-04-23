@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import {
 	AppBar,
 	Badge,
@@ -81,7 +81,7 @@ export default function HeadBar() {
 									<IconButton
 										aria-label='show 17 new notifications'
 										color='inherit'>
-										<Badge badgeContent={17} color='secondary'>
+										<Badge badgeContent={''} color='secondary'>
 											<NotificationsIcon />
 										</Badge>
 									</IconButton>

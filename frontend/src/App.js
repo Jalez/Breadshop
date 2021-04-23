@@ -1,17 +1,12 @@
 /** @format */
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import {
-	createMuiTheme,
-	Grid,
-	makeStyles,
-	ThemeProvider,
-} from '@material-ui/core';
-import { green, lime } from '@material-ui/core/colors';
+import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core';
+import { lime } from '@material-ui/core/colors';
 import Cart from './components/Cart';
 import HeadBar from './components/HeadBar';
 import Notification from './components/Notification';
-import ShopList from './components/ShopList';
+import Shop from './components/Shop';
 import About from './components/About';
 import { getImage } from './utils/getImage';
 
@@ -47,7 +42,7 @@ function App() {
 					<HeadBar />
 					<Switch>
 						<Route exact path='/about' component={About} />
-						<Route exact path='/' component={ShopList} />
+						<Route exact path='/' component={Shop} />
 						<Route exact path='/order' component={About} />
 					</Switch>
 					{/* <ShopList /> */}
