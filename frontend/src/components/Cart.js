@@ -10,13 +10,11 @@ import {
 	Typography,
 } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import { store } from 'react-notifications-component';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addNotification, addOrder, emptyCart } from '../redux/actionCreators';
 import CartItem from './CartItem';
 import FlexPaper from './FlexPaper';
-
 
 const useStyle = makeStyles((theme) => ({
 	drawer: {
@@ -66,26 +64,23 @@ const Cart = ({ cart, emptyCart, addNotification }) => {
 		// state must be set to false
 		setDrawerOpen(!drawerOpen);
 		// A notification should be sent to the user
-<<<<<<< HEAD
 		addNotification({
 			message: `A new order placed! Order Id: ${orderId}`,
 			severity: 'info',
 		});
-=======
-		store.addNotification({
-			title: "OK!",
-			message: "Order sent!",
-			type: "success",
-			insert: "top",
-			container: "top-right",
-			animationIn: ["animate__animated", "animate__fadeIn"],
-			animationOut: ["animate__animated", "animate__fadeOut"],
-			dismiss: {
-			  duration: 5000,
-			  onScreen: true
-			}
-		  });
->>>>>>> 7bb4db310f28506612fd59fdd909ce4543c48cef
+		// store.addNotification({
+		// 	title: "OK!",
+		// 	message: "Order sent!",
+		// 	type: "success",
+		// 	insert: "top",
+		// 	container: "top-right",
+		// 	animationIn: ["animate__animated", "animate__fadeIn"],
+		// 	animationOut: ["animate__animated", "animate__fadeOut"],
+		// 	dismiss: {
+		// 	  duration: 5000,
+		// 	  onScreen: true
+		// 	}
+		//   });
 	};
 
 	const renderDrawer = () => {

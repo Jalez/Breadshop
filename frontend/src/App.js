@@ -5,18 +5,10 @@ import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core';
 import { lime } from '@material-ui/core/colors';
 import Cart from './components/Cart';
 import HeadBar from './components/HeadBar';
-<<<<<<< HEAD
 import Notification from './components/Notification';
 import Shop from './components/Shop';
 import About from './components/About';
 import { getImage } from './utils/getImage';
-=======
-import ShopList from './components/ShopList';
-import React from 'react';
-import 'react-notifications-component/dist/theme.css';
-import ReactNotification from 'react-notifications-component'
-
->>>>>>> 7bb4db310f28506612fd59fdd909ce4543c48cef
 
 const theme = createMuiTheme({
 	palette: {
@@ -60,11 +52,7 @@ function App() {
 				</div>
 			</Router>
 		</ThemeProvider>
-	
 	);
 }
-
-
-
 
 export default App;
