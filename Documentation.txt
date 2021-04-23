@@ -35,7 +35,7 @@ npx create-react-app frontend
 add dependencies axios, material-ui
 
 ---------------
-7.4 Working with docker/docker-compose.yml
+7.4 Working with docker/docker-compose.yml/docker hub
 - Jaakko R -
 ---------------
 Add rabbitmq compose config
@@ -57,5 +57,36 @@ Add Item-component
 ---------------
 18.4 Docker auto build when Git commit
 -Otto L- 
---------------
+---------------
 Set up trigger for Docker auto build 
+---------------
+22.4 Working with the Frontend - Redux, service, 
+- Jaakko R -
+---------------
+[x] Add constants for redux
+[x] Add reducers for redux
+[x] Add action creators for redux
+[x] Add store for redux
+[x] Connect redux store to App
+[x] Create data for SandWiches
+[x] Add Sandwich.js (hardcoded values) 
+[x] Add Cart-component
+[x] Add CartItem-component
+[x] Modify Shoplist component
+[x] Modify ShopItem component
+[x] connect Cart to redux store (cart)
+[x] connect CartItem to redux Store (cart)
+[x] connect ShopItem to redux store (cart)
+[x] Do a ton of css doodling, bug fixing, etc. 
+
+FRONTSIDE TO DO:
+[ ] Connect Cart to redux-store (order)
+[ ] Save order Ids to local storage.
+[ ] Add Notification-component (optional)
+[ ] Add OrderList-component. 
+[ ] Add OrderItem-component. 
+[ ] Add service.js for communication between server-A and frontend
+[ ] Add redux-thunk-syntax to actionCreators (order). 
+[ ] test communication works between server A and frontend. 
+
+Add state-control with redux. 

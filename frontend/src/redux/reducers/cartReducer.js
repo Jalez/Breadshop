@@ -15,7 +15,7 @@ const cartReducer = (state = [], action) => {
 			return state.filter((item) => item.id !== action.payload.id);
 		case UPDATE_CART_ITEM_AMOUNT:
 			const index = state.findIndex((item) => item.id === action.payload.id);
-			state[index].amount = action.payload.amount;
+			state[index].amount += action.payload.amount;
 			return [...state];
 		case EMPTY_CART:
 			return [];
