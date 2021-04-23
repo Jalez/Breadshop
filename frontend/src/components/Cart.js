@@ -9,10 +9,11 @@ import {
 	Typography,
 } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-
+import { store } from 'react-notifications-component';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import CartItem from './CartItem';
+
 
 const useStyle = makeStyles((theme) => ({
 	drawer: {
@@ -55,6 +56,19 @@ const Cart = ({ cart }) => {
 		// state must be set to false
 		setState(!state);
 		// A notification should be sent to the user
+		store.addNotification({
+			title: "OK!",
+			message: "Order sent!",
+			type: "success",
+			insert: "top",
+			container: "top-right",
+			animationIn: ["animate__animated", "animate__fadeIn"],
+			animationOut: ["animate__animated", "animate__fadeOut"],
+			dismiss: {
+			  duration: 5000,
+			  onScreen: true
+			}
+		  });
 	};
 
 	const renderDrawer = () => {
@@ -79,7 +93,7 @@ const Cart = ({ cart }) => {
 				{cartItems}
 				<Box display='flex' justifyContent='space-between'>
 					<Box>
-						<Typography variant='h5'>TOTAL: {total}</Typography>
+						<Typography variant='h5'>TOTAL: {total} </Typography>
 					</Box>
 					<Box>
 						<Button color='primary' onClick={submitHandler} variant='contained'>

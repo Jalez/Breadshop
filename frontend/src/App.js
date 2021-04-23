@@ -5,6 +5,10 @@ import { green } from '@material-ui/core/colors';
 import Cart from './components/Cart';
 import HeadBar from './components/HeadBar';
 import ShopList from './components/ShopList';
+import React from 'react';
+import 'react-notifications-component/dist/theme.css';
+import ReactNotification from 'react-notifications-component'
+
 
 const theme = createMuiTheme({
 	palette: {
@@ -27,8 +31,13 @@ function App() {
 				</Grid>
 			</Grid>
 			<Cart />
+			<ReactNotification />
 		</ThemeProvider>
+	
 	);
 }
+
+
+
 
 export default App;

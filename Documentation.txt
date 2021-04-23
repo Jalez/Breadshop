@@ -57,8 +57,12 @@ Add Item-component
 ---------------
 18.4 Docker auto build when Git commit
 -Otto L- 
+[x] Set up gitlab-ci trigger for Docker auto build -> no runners -> disabled
 ---------------
-Set up trigger for Docker auto build 
+22.4 UI updates
+-Otto L- 
+[x] Added cart items to ui
+[x) Deleted UI code that is not needed
 ---------------
 22.4 Working with the Frontend - Redux, service, 
 - Jaakko R -
@@ -90,3 +94,17 @@ FRONTSIDE TO DO:
 [ ] test communication works between server A and frontend. 
 
 Add state-control with redux. 
+
+23.4 UI updates
+-Otto L- 
+[x] Add Notification-component
+https://www.npmjs.com/package/react-notifications-component
+
+FRONTSIDE TO DO:
+[ ] Connect Cart to redux-store (order)
+[ ] Save order Ids to local storage.
+[ ] Add OrderList-component. 
+[ ] Add OrderItem-component. 
+[ ] Add service.js for communication between server-A and frontend
+[ ] Add redux-thunk-syntax to actionCreators (order). 
+[ ] test communication works between server A and frontend. 
