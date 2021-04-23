@@ -9,7 +9,7 @@
 # and this file is ready, you use this file and run it with:
 # `docker-compose up --build`
 
-version: '3'
+version: '3.8'
 
 services:
   # An example configuration of server A for groups' convenience.
@@ -24,6 +24,7 @@ services:
     # work. Just uncomment them
     depends_on:
       - rapid-runner-rabbit
+      - mongodb
     command:
       [
         './utils/wait-for-it.sh',
@@ -79,9 +80,6 @@ services:
       - backend
     expose:
       - '8080'
-    # build:
-    # dockerfile:
-    # context:
 
   # Your group might want to use a database to store some data
   # You can use any database you wish, PostgreSQL, MySQL and
@@ -89,7 +87,50 @@ services:
   # But some groups could find a way to do this without
   # databases (but I could not :-) )
   # database-service would go here.
-  #database:
+
+  # Note: one can inspect the database by doing:
+  #   sudo docker exec -it mongodb bash
+  #   mongo
+  # then doing mongo shell commands as per usual.
+  #   show databases
+  #   use <db>
+  #   show collections
+  #   <db>.<cltn>.find().pretty()
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+    - MONGO_INITDB_ROOT_USERNAME=root
+    - MONGO_INITDB_ROOT_PASSWORD=pass
+    volumes:
+    - mongodb-data:/data/db
+    ports:
+    - 27017:27017
+    networks:
+    - backend
+    restart: unless-stopped
+    
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    environment:
+    - ME_CONFIG_MONGODB_SERVER=mongodb
+    - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+    - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+    - ME_CONFIG_MONGODB_ADMINPASSWORD=pass
+    - ME_CONFIG_BASICAUTH_USERNAME=admin
+    - ME_CONFIG_BASICAUTH_PASSWORD=admin
+    volumes:
+    - mongodb-data
+    depends_on:
+    - mongodb
+    networks:
+    - backend
+    ports:
+    - 8081:8081
+    restart: unless-stopped
+    networks:
+    - backend
 
 # Here we create a named network, that all the backend components
 # must be added to for them to be able to communicate through
@@ -103,3 +144,6 @@ networks:
 # Personally I like to look at the database's image's Dockerfile
 # in the Docker Hub to see what directory it uses to store data.
 # volumes:
+
+volumes:
+  mongodb-data:
