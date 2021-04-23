@@ -1,13 +1,14 @@
 /** @format */
 
 import React from 'react';
+import FlexPaper from './FlexPaper';
 
 const About = () => {
 	return (
-		<div>
+		<FlexPaper header='About us'>
 			<p>This is larg Sandwich Shop frontend.</p>
 			<p>Powered by larg.</p>
-		</div>
+		</FlexPaper>
 	);
 };
 

@@ -3,12 +3,13 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core';
 import { lime } from '@material-ui/core/colors';
-import Cart from './components/Cart';
 import HeadBar from './components/HeadBar';
 import Notification from './components/Notification';
+import Cart from './components/Cart';
 import Shop from './components/Shop';
 import About from './components/About';
 import { getImage } from './utils/getImage';
+import Order from './components/Order';
 
 const theme = createMuiTheme({
 	palette: {
@@ -41,12 +42,13 @@ function App() {
 				<div className={classes.root}>
 					<HeadBar />
 					<Switch>
-						<Route exact path='/about' component={About} />
 						<Route exact path='/' component={Shop} />
-						<Route exact path='/order' component={About} />
+						<Route exact path='/cart' component={Cart} />
+						<Route exact path='/orders' component={Order} />
+						<Route exact path='/aboutus' component={About} />
 					</Switch>
 					{/* <ShopList /> */}
-					<Cart />
+					{/* <Cart /> */}
 					<Notification />
 					{/* <About /> */}
 				</div>

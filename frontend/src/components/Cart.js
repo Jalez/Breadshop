@@ -1,91 +1,39 @@
 /** @format */
 
-import {
-	Box,
-	Button,
-	Drawer,
-	Fab,
-	makeStyles,
-	Paper,
-	Typography,
-} from '@material-ui/core';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import React, { useState } from 'react';
+import { Box, Button, List, makeStyles, Typography } from '@material-ui/core';
+import React from 'react';
 import { connect } from 'react-redux';
 import { addNotification, addOrder, emptyCart } from '../redux/actionCreators';
 import CartItem from './CartItem';
 import FlexPaper from './FlexPaper';
 
 const useStyle = makeStyles((theme) => ({
-	drawer: {
-		borderRadius: '0px 0px 30px 30px',
-		[theme.breakpoints.up('lg')]: {
-			left: '25%',
-			right: '25%',
-		},
-		[theme.breakpoints.up('md')]: {
-			left: '20%',
-			right: '20%',
-		},
-		[theme.breakpoints.up('sm')]: {
-			left: '15%',
-			right: '15%',
-		},
-		[theme.breakpoints.up('xs')]: {
-			left: '10%',
-			right: '10%',
-		},
-	},
-	padding: {
-		padding: theme.spacing(2),
+	font: {
+		fontFamily: 'fantasy',
 	},
 }));
 
 const Cart = ({ cart, emptyCart, addNotification }) => {
-	const { padding, drawer } = useStyle();
-	const [drawerOpen, setDrawerOpen] = useState(false);
-	let total = 0;
-
-	const toggleDrawer = () => (event) => {
-		setDrawerOpen(!drawerOpen);
-	};
+	const { font } = useStyle();
+	let total;
 
 	const generateOrderId = () => {
 		return Math.floor(Math.random() * 1000);
 	};
 
 	const confirmHandler = (event) => {
-		// At this point, several things need to happen
-		// 1. A new order must be made
 		const orderId = generateOrderId();
 		addOrder({ orderId, cart, total });
-		// 2. The cart must be cleared
 		emptyCart();
-		// state must be set to false
-		setDrawerOpen(!drawerOpen);
-		// A notification should be sent to the user
 		addNotification({
 			message: `A new order placed! Order Id: ${orderId}`,
 			severity: 'info',
 		});
-		// store.addNotification({
-		// 	title: "OK!",
-		// 	message: "Order sent!",
-		// 	type: "success",
-		// 	insert: "top",
-		// 	container: "top-right",
-		// 	animationIn: ["animate__animated", "animate__fadeIn"],
-		// 	animationOut: ["animate__animated", "animate__fadeOut"],
-		// 	dismiss: {
-		// 	  duration: 5000,
-		// 	  onScreen: true
-		// 	}
-		//   });
 	};
 
-	const renderDrawer = () => {
+	const renderCartItems = () => {
 		total = 0;
-		const cartItems = cart.map(({ id, amount, image, name, price }) => {
+		return cart.map(({ id, amount, image, name, price }) => {
 			total += amount * price;
 			return (
 				<CartItem
@@ -98,46 +46,28 @@ const Cart = ({ cart, emptyCart, addNotification }) => {
 				/>
 			);
 		});
-
-		return (
-			<div className={padding}>
-				{cartItems}
-				<Box display='flex' justifyContent='space-between'>
-					<Box>
-						<Typography variant='h5'>TOTAL: {total} </Typography>
-					</Box>
-					<Box>
-						<Button
-							color='primary'
-							onClick={confirmHandler}
-							variant='contained'>
-							Confirm order
-						</Button>
-					</Box>
-				</Box>
-			</div>
-		);
 	};
-	return <FlexPaper header='CART'></FlexPaper>;
-	// return (
-	// 	<>
-	// 		<Fab
-	// 			color='primary'
-	// 			aria-label='add'
-	// 			onClick={toggleDrawer()}
-	// 			disabled={cart.length === 0}>
-	// 			<ShoppingCartIcon />
-	// 		</Fab>
-
-	// 		<Drawer
-	// 			anchor={'top'}
-	// 			open={drawerOpen}
-	// 			onClose={toggleDrawer()}
-	// 			classes={{ paperAnchorTop: drawer }}>
-	// 			{renderDrawer()}
-	// 		</Drawer>
-	// 	</>
-	// );
+	return (
+		<FlexPaper header='CART'>
+			<List>{renderCartItems()}</List>
+			<Box display='flex' justifyContent='space-between'>
+				<Box>
+					<Typography className={font} variant='h5'>
+						TOTAL: {total} €
+					</Typography>
+				</Box>
+				<Box>
+					<Button
+						color='primary'
+						onClick={confirmHandler}
+						variant='contained'
+						className={font}>
+						Confirm Order
+					</Button>
+				</Box>
+			</Box>
+		</FlexPaper>
+	);
 };
 
 const mapStateToProps = (state) => {

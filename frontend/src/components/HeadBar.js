@@ -13,6 +13,7 @@ import {
 	Typography,
 } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -30,16 +31,16 @@ const useStyles = makeStyles((theme) => ({
 
 const options = [
 	{
-		name: 'MENU',
+		details: 'MENU /',
 	},
 	{
-		name: 'CART',
+		details: 'CART /cart',
 	},
 	{
-		name: 'ORDERS',
+		details: 'ORDERS /orders',
 	},
 	{
-		name: 'ABOUT US',
+		details: 'ABOUT US /aboutus',
 	},
 ];
 
@@ -68,15 +69,25 @@ export default function HeadBar() {
 						<div className={classes.grow} />
 						<Grid item xs={12} md={6}>
 							<Box display='flex' justifyContent='space-between'>
-								{options.map(({ name }) => (
-									<Box>
-										<Button color='inherit'>
-											<Typography className={classes.font} variant='h6' noWrap>
-												{name}
-											</Typography>
-										</Button>
-									</Box>
-								))}
+								{options.map(({ details }) => {
+									const [name, ...url] = details.split('/');
+									return (
+										<Link
+											to={`/${url[0].toLowerCase()}`}
+											style={{ color: 'black' }}>
+											<Box>
+												<Button color='inherit'>
+													<Typography
+														className={classes.font}
+														variant='h6'
+														noWrap>
+														{name}
+													</Typography>
+												</Button>
+											</Box>
+										</Link>
+									);
+								})}
 								<Box>
 									<IconButton
 										aria-label='show 17 new notifications'
@@ -94,5 +105,3 @@ export default function HeadBar() {
 		</div>
 	);
 }
-
-  

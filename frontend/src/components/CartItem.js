@@ -2,28 +2,20 @@
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import { red } from '@material-ui/core/colors';
-import RemoveIcon from '@material-ui/icons/Remove';
-import AddIcon from '@material-ui/icons/Add';
-import { Avatar, Box } from '@material-ui/core';
+import { Avatar, Divider, Grid, ListItem } from '@material-ui/core';
 import { updateCartItem } from '../redux/actionCreators';
 import { connect } from 'react-redux';
+import AmountUpdater from './AmountUpdater';
 
 const useStyles = makeStyles((theme) => ({
 	image: {
 		width: theme.spacing(7),
 		height: theme.spacing(7),
 	},
-
 	media: {
 		// maxWidth: 110,
 		paddingTop: '56.25%', // 16:9
 		// maxHeight: 10,
-	},
-
-	avatar: {
-		backgroundColor: red[500],
 	},
 }));
 
@@ -32,37 +24,24 @@ const CartItem = ({ id, name, amount, image, price, updateCartItem }) => {
 
 	return (
 		<>
-			<Box
-				display='flex'
-				flexDirection='row'
-				alignItems='center'
-				justifyContent='space-around'>
-				<Box>
-					<Avatar alt={name} src={image} className={classes.image} />
-				</Box>
+			<ListItem className={classes.item}>
+				<Grid container justify='space-between'>
+					<Grid item xs={6} sm={3}>
+						<Avatar alt={name} src={image} className={classes.image} />
+					</Grid>
+					<Grid item xs={6} sm={3}>
+						<h3>{name}</h3>
+					</Grid>
+					<Grid item>
+						<p className=''> {price} €</p>
+					</Grid>
+					<Grid item>
+						<AmountUpdater amount={amount} id={id} />
+					</Grid>
+				</Grid>
+			</ListItem>
 
-				<Box>
-					<h2>{name}</h2>
-				</Box>
-
-				<Box>Unit price: {price} €</Box>
-				<Box>
-					Amount:
-					<IconButton
-						disabled={amount === 0}
-						onClick={(e) => updateCartItem(id, -1)}>
-						<RemoveIcon />
-					</IconButton>
-					{amount}
-					<IconButton onClick={(e) => updateCartItem(id, 1)}>
-						<AddIcon />
-					</IconButton>
-				</Box>
-				<Box display='flex' flexDirection='column'>
-					<Box>Total: {amount * price}</Box>
-				</Box>
-			</Box>
-			<hr />
+			<Divider />
 		</>
 	);
 };
