@@ -1,8 +1,6 @@
 /** @format */
 
-const getImage = (name) => {
-	return process.env.PUBLIC_URL + '/images/' + name + '.jpg';
-};
+import { getImage } from '../utils/getImage';
 
 const sandWiches = [
 	{

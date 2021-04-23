@@ -18,7 +18,8 @@ import { addCartItem, updateCartItem } from '../redux/actionCreators';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		maxWidth: 210,
+		width: 310,
+		// minHeight: 400,
 	},
 
 	media: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	desc: {
-		height: 200,
+		height: 100,
 		overflow: 'auto',
 	},
 
@@ -70,8 +71,12 @@ const ShopItem = ({
 			<CardActionArea>
 				<CardMedia className={classes.media} image={image} title={name} />
 				<CardContent>
-					<Typography gutterBottom variant='h5' component='h2'>
-						{name}
+					<Typography
+						gutterBottom
+						variant='h5'
+						component='h2'
+						style={{ fontFamily: 'fantasy' }}>
+						{name + ', ' + price + ' €'}
 					</Typography>
 					<Typography
 						className={classes.desc}
@@ -80,9 +85,11 @@ const ShopItem = ({
 						component='p'>
 						{description}
 					</Typography>
-					<Typography gutterBottom variant='h5' component='h3'>
-						{price} €
-					</Typography>
+					<Typography
+						gutterBottom
+						variant='h5'
+						component='h3'
+						style={{ fontFamily: 'fantasy' }}></Typography>
 				</CardContent>
 			</CardActionArea>
 			<CardActions>

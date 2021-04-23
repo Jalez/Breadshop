@@ -12,6 +12,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { addNotification, addOrder, emptyCart } from '../redux/actionCreators';
 import CartItem from './CartItem';
 
 const useStyle = makeStyles((theme) => ({
@@ -39,27 +40,37 @@ const useStyle = makeStyles((theme) => ({
 	},
 }));
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, emptyCart, addNotification }) => {
 	const { margin, drawer } = useStyle();
-	const [state, setState] = useState(false);
+	const [drawerOpen, setDrawerOpen] = useState(false);
+	let total = 0;
 
 	const toggleDrawer = () => (event) => {
-		setState(!state);
+		setDrawerOpen(!drawerOpen);
 	};
 
-	const submitHandler = (event) => {
-		console.log('submitHandler clicked');
+	const generateOrderId = () => {
+		return Math.floor(Math.random() * 1000);
+	};
+
+	const confirmHandler = (event) => {
 		// At this point, several things need to happen
 		// 1. A new order must be made
+		const orderId = generateOrderId();
+		addOrder({ orderId, cart, total });
 		// 2. The cart must be cleared
+		emptyCart();
 		// state must be set to false
-		setState(!state);
+		setDrawerOpen(!drawerOpen);
 		// A notification should be sent to the user
+		addNotification({
+			message: `A new order placed! Order Id: ${orderId}`,
+			severity: 'info',
+		});
 	};
 
 	const renderDrawer = () => {
-		let total = 0;
-
+		total = 0;
 		const cartItems = cart.map(({ id, amount, image, name, price }) => {
 			total += amount * price;
 			return (
@@ -82,7 +93,10 @@ const Cart = ({ cart }) => {
 						<Typography variant='h5'>TOTAL: {total}</Typography>
 					</Box>
 					<Box>
-						<Button color='primary' onClick={submitHandler} variant='contained'>
+						<Button
+							color='primary'
+							onClick={confirmHandler}
+							variant='contained'>
 							Confirm order
 						</Button>
 					</Box>
@@ -93,13 +107,17 @@ const Cart = ({ cart }) => {
 
 	return (
 		<>
-			<Fab color='primary' aria-label='add' onClick={toggleDrawer()}>
+			<Fab
+				color='primary'
+				aria-label='add'
+				onClick={toggleDrawer()}
+				disabled={cart.length === 0}>
 				<ShoppingCartIcon />
 			</Fab>
 
 			<Drawer
 				anchor={'top'}
-				open={state}
+				open={drawerOpen}
 				onClose={toggleDrawer()}
 				classes={{ paperAnchorTop: drawer }}>
 				{renderDrawer()}
@@ -112,4 +130,4 @@ const mapStateToProps = (state) => {
 	return { cart: state.cart };
 };
 
-export default connect(mapStateToProps, null)(Cart);
+export default connect(mapStateToProps, { emptyCart, addNotification })(Cart);
