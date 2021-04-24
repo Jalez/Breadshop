@@ -111,6 +111,7 @@ FRONTSIDE TO DO:
 
 -----------------
 23.4 Working with the Frontend - Redux, Order-components, Notifications, service.js, connect. 
+-Jaakko R-
 -----------------
 
 [x] Connect Cart to redux-store (order)
@@ -128,15 +129,23 @@ Additionally:
 [x]Add Amount-component.
 [x]Add RouteOption-component.
 [x]Add FlexPaper-component
+ 
 
-FRONTSIDE TODO:
-[ ] Make it possible to remove items from cart (You can currently reduce the Amount of items, but not remove them completely).
+FRONTSIDE MUST TODO:
 [ ] Add redux-thunk-syntax to actionCreators (order). 
-[ ] Save order Ids to local storage (so that orders can be retrieved when browser is refreshed).
+[ ] Save users order Ids to local storage (so that orders can be retrieved when browser is refreshed).
 [ ] Grab order Ids from local storage and get orders from server.
-[ ] test communication works between server A and frontend (Backend needs to function in a way it will send proper responses to requests). 
+[ ] Add a "refresh order status"-button to Order-component
+[ ] Add refresher(interval?) to update users order states that are marked unfinished. 
+[ ] Test communication works between server A and frontend (Backend needs to function in a way it will send proper responses to requests).
+[ ] Test order-states update correctly.
+
+FRONTSIDE "OPTIONALS":
+[ ] Make it possible to remove items from cart (You can currently reduce the Amount of items, but not remove them completely) (optional).
 [ ] Implement search functionality to search for Order by id (optional) from the DB and/or frontside order-state.
 [ ] Implement "About us"-component properly (optional)
-[ ] Implement "Notifications"-button (top right corner) to list all notifications from that session, using notification-state. 
+[ ] Implement "Notifications"-button (top right corner) to list all notifications from that session, using notification-state (optional). 
+[ ] Fix OrderItem-components presentation of Order cart to be more visually pleasing (optional)
+[ ] Add option to re-order a completed order (optional)
 
 ------------------
