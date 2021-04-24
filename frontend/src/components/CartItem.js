@@ -40,7 +40,6 @@ const CartItem = ({ id, name, amount, image, price, updateCartItem }) => {
 					</Grid>
 				</Grid>
 			</ListItem>
-
 			<Divider />
 		</>
 	);

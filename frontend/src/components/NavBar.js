@@ -29,22 +29,9 @@ const useStyles = makeStyles((theme) => ({
 	title: {},
 }));
 
-const options = [
-	{
-		details: 'MENU /',
-	},
-	{
-		details: 'CART /cart',
-	},
-	{
-		details: 'ORDERS /orders',
-	},
-	{
-		details: 'ABOUT US /aboutus',
-	},
-];
+const options = [];
 
-export default function HeadBar() {
+export default function NavBar({ children }) {
 	const classes = useStyles();
 
 	return (
@@ -69,25 +56,7 @@ export default function HeadBar() {
 						<div className={classes.grow} />
 						<Grid item xs={12} md={6}>
 							<Box display='flex' justifyContent='space-between'>
-								{options.map(({ details }) => {
-									const [name, ...url] = details.split('/');
-									return (
-										<Link
-											to={`/${url[0].toLowerCase()}`}
-											style={{ color: 'black' }}>
-											<Box>
-												<Button color='inherit'>
-													<Typography
-														className={classes.font}
-														variant='h6'
-														noWrap>
-														{name}
-													</Typography>
-												</Button>
-											</Box>
-										</Link>
-									);
-								})}
+								{children.map((child) => child)}
 								<Box>
 									<IconButton
 										aria-label='show 17 new notifications'

@@ -13,7 +13,7 @@ const useStyle = makeStyles((theme) => ({
 	},
 }));
 
-const Cart = ({ cart, emptyCart, addNotification }) => {
+const Cart = ({ cart, emptyCart, addNotification, addOrder }) => {
 	const { font } = useStyle();
 	let total;
 
@@ -23,13 +23,19 @@ const Cart = ({ cart, emptyCart, addNotification }) => {
 
 	const confirmHandler = (event) => {
 		const orderId = generateOrderId();
-		addOrder({ orderId, cart, total });
+		const status = 'Awaiting response...';
+		addOrder({ orderId, cart, total, status });
 		emptyCart();
 		addNotification({
 			message: `A new order placed! Order Id: ${orderId}`,
 			severity: 'info',
 		});
 	};
+	const renderAlternativeInfo = () => (
+		<p style={{ textAlign: 'center' }}>
+			It looks like you have no bread in your cart yet. See MENU and add some!
+		</p>
+	);
 
 	const renderCartItems = () => {
 		total = 0;
@@ -49,23 +55,29 @@ const Cart = ({ cart, emptyCart, addNotification }) => {
 	};
 	return (
 		<FlexPaper header='CART'>
-			<List>{renderCartItems()}</List>
-			<Box display='flex' justifyContent='space-between'>
-				<Box>
-					<Typography className={font} variant='h5'>
-						TOTAL: {total} €
-					</Typography>
-				</Box>
-				<Box>
-					<Button
-						color='primary'
-						onClick={confirmHandler}
-						variant='contained'
-						className={font}>
-						Confirm Order
-					</Button>
-				</Box>
-			</Box>
+			{cart.length > 0 ? (
+				<>
+					<List>{renderCartItems()}</List>
+					<Box display='flex' justifyContent='space-between'>
+						<Box>
+							<Typography className={font} variant='h5'>
+								TOTAL: {total} €
+							</Typography>
+						</Box>
+						<Box>
+							<Button
+								color='primary'
+								onClick={confirmHandler}
+								variant='contained'
+								className={font}>
+								Confirm Order
+							</Button>
+						</Box>
+					</Box>
+				</>
+			) : (
+				renderAlternativeInfo()
+			)}
 		</FlexPaper>
 	);
 };
@@ -74,4 +86,8 @@ const mapStateToProps = (state) => {
 	return { cart: state.cart };
 };
 
-export default connect(mapStateToProps, { emptyCart, addNotification })(Cart);
+export default connect(mapStateToProps, {
+	emptyCart,
+	addNotification,
+	addOrder,
+})(Cart);

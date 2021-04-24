@@ -3,13 +3,14 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core';
 import { lime } from '@material-ui/core/colors';
-import HeadBar from './components/HeadBar';
 import Notification from './components/Notification';
 import Cart from './components/Cart';
 import Shop from './components/Shop';
 import About from './components/About';
 import { getImage } from './utils/getImage';
-import Order from './components/Order';
+import Orders from './components/Orders';
+import NavBar from './components/NavBar';
+import RouteButton from './components/RouteOption';
 
 const theme = createMuiTheme({
 	palette: {
@@ -40,17 +41,19 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<Router>
 				<div className={classes.root}>
-					<HeadBar />
+					<NavBar>
+						<RouteButton path='/' title='MENU' />
+						<RouteButton path='/cart' title='CART' />
+						<RouteButton path='/orders' title='ORDERS' />
+						<RouteButton path='/about' title='ABOUT' />
+					</NavBar>
 					<Switch>
 						<Route exact path='/' component={Shop} />
 						<Route exact path='/cart' component={Cart} />
-						<Route exact path='/orders' component={Order} />
-						<Route exact path='/aboutus' component={About} />
+						<Route exact path='/orders' component={Orders} />
+						<Route exact path='/about' component={About} />
 					</Switch>
-					{/* <ShopList /> */}
-					{/* <Cart /> */}
 					<Notification />
-					{/* <About /> */}
 				</div>
 			</Router>
 		</ThemeProvider>
