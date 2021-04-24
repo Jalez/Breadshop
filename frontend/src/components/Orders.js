@@ -38,7 +38,7 @@ const Order = ({ orders }) => {
 	const renderAlternativeInfo = () => (
 		<p style={{ textAlign: 'center' }}>
 			It looks like you have no bread orders listed. See CART and confirm some
-			purchases, or search for a bread order by its id!
+			purchases, (or search for a bread order by its id! -- NOT IMPLEMENTED YET)
 		</p>
 	);
 

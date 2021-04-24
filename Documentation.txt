@@ -130,7 +130,13 @@ Additionally:
 [x]Add FlexPaper-component
 
 FRONTSIDE TODO:
+[ ] Make it possible to remove items from cart (You can currently reduce the Amount of items, but not remove them completely).
 [ ] Add redux-thunk-syntax to actionCreators (order). 
 [ ] Save order Ids to local storage (so that orders can be retrieved when browser is refreshed).
 [ ] Grab order Ids from local storage and get orders from server.
-[ ] test communication works between server A and frontend. 
+[ ] test communication works between server A and frontend (Backend needs to function in a way it will send proper responses to requests). 
+[ ] Implement search functionality to search for Order by id (optional) from the DB and/or frontside order-state.
+[ ] Implement "About us"-component properly (optional)
+[ ] Implement "Notifications"-button (top right corner) to list all notifications from that session, using notification-state. 
+
+------------------
