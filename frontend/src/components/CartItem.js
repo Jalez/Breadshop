@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Avatar, Divider, Grid, ListItem } from '@material-ui/core';
 import { updateCartItem } from '../redux/actionCreators';
 import { connect } from 'react-redux';
-import AmountUpdater from './AmountUpdater';
 
 const useStyles = makeStyles((theme) => ({
 	image: {
@@ -19,11 +18,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const CartItem = ({ id, name, amount, image, price, updateCartItem }) => {
+const CartItem = ({ children, name, image, price }) => {
 	const classes = useStyles();
 
 	return (
 		<>
+			<Divider />
 			<ListItem className={classes.item}>
 				<Grid container justify='space-between'>
 					<Grid item xs={6} sm={3}>
@@ -35,12 +35,9 @@ const CartItem = ({ id, name, amount, image, price, updateCartItem }) => {
 					<Grid item>
 						<p className=''> {price} €</p>
 					</Grid>
-					<Grid item>
-						<AmountUpdater amount={amount} id={id} />
-					</Grid>
+					<Grid item>{children}</Grid>
 				</Grid>
 			</ListItem>
-			<Divider />
 		</>
 	);
 };

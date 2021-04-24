@@ -4,9 +4,10 @@ import { Box, Button, List, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import { addNotification, addOrder, emptyCart } from '../redux/actionCreators';
+import AmountUpdater from './AmountUpdater';
 import CartItem from './CartItem';
 import FlexPaper from './FlexPaper';
-
+import { RESPONSE_AWAITING } from '../OrderStatusConstants';
 const useStyle = makeStyles((theme) => ({
 	font: {
 		fontFamily: 'fantasy',
@@ -23,7 +24,7 @@ const Cart = ({ cart, emptyCart, addNotification, addOrder }) => {
 
 	const confirmHandler = (event) => {
 		const orderId = generateOrderId();
-		const status = 'Awaiting response...';
+		const status = RESPONSE_AWAITING;
 		addOrder({ orderId, cart, total, status });
 		emptyCart();
 		addNotification({
@@ -48,8 +49,10 @@ const Cart = ({ cart, emptyCart, addNotification, addOrder }) => {
 					amount={amount}
 					image={image}
 					name={name}
-					price={price}
-				/>
+					price={price}>
+					{' '}
+					<AmountUpdater amount={amount} id={id} />
+				</CartItem>
 			);
 		});
 	};

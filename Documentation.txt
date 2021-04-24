@@ -108,3 +108,29 @@ FRONTSIDE TO DO:
 [ ] Add service.js for communication between server-A and frontend
 [ ] Add redux-thunk-syntax to actionCreators (order). 
 [ ] test communication works between server A and frontend. 
+
+-----------------
+23.4 Working with the Frontend - Redux, Order-components, Notifications, service.js, connect. 
+-----------------
+
+[x] Connect Cart to redux-store (order)
+[x] Add Notification-component (optional)
+[x] Add Orders-component. 
+[x] Add OrderItem-component. 
+[x] Add service.js for communication between server-A and frontend (NEEDS THUNK FOR COMMUNICATION. I will handle this later.)
+
+Additionally:
+[x]Remodel UI to better suit a BREADSHOP
+[x]Name the shop BREADSHOP
+[x]Add Router Functionality
+[x]Add OrderStatusConstants-component
+[x]Add AmountUpdater-component
+[x]Add Amount-component.
+[x]Add RouteOption-component.
+[x]Add FlexPaper-component
+
+FRONTSIDE TODO:
+[ ] Add redux-thunk-syntax to actionCreators (order). 
+[ ] Save order Ids to local storage (so that orders can be retrieved when browser is refreshed).
+[ ] Grab order Ids from local storage and get orders from server.
+[ ] test communication works between server A and frontend. 

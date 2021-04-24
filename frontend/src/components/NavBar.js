@@ -6,14 +6,12 @@ import {
 	AppBar,
 	Badge,
 	Box,
-	Button,
 	Grid,
 	IconButton,
 	Toolbar,
 	Typography,
 } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -28,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	title: {},
 }));
-
-const options = [];
 
 export default function NavBar({ children }) {
 	const classes = useStyles();

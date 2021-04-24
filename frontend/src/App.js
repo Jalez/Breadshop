@@ -24,13 +24,8 @@ const theme = createMuiTheme({
 const useStyle = makeStyles((theme) => ({
 	root: {
 		minHeight: '98vh',
-
-		// width: '10000',
 		backgroundImage: `url(${getImage('background4', 'png')})`,
 		backgroundSize: 360,
-		// backgroundColor: '#e6f7d0',
-		// backgroundRepeat: 'space',
-
 		overflow: 'hidden',
 	},
 }));
