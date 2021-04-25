@@ -8,9 +8,10 @@ const breadOrderIdCache = 'breadOrderIdCache';
  * @param {String} id the id of the item to be stored in localStorage
  */
 export const orderIdToCache = (id) => {
-	const retrievedCache = localStorage.getItem(breadOrderIdCache).split(',');
+	const retrievedCache =
+		localStorage.getItem(breadOrderIdCache)?.split(',') || [];
 	retrievedCache.push(id);
-	localStorage.setItem(retrievedCache.toString());
+	localStorage.setItem(breadOrderIdCache, retrievedCache.toString());
 };
 
 /**
@@ -20,5 +21,5 @@ export const orderIdToCache = (id) => {
 export const removeOrderFromCache = (id) => {
 	const retrievedCache = localStorage.getItem(breadOrderIdCache).split(',');
 	const filteredCache = retrievedCache.filter((item) => item !== id);
-	localStorage.setItem(filteredCache.toString());
+	localStorage.setItem(breadOrderIdCache, filteredCache.toString());
 };
