@@ -14,7 +14,11 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import { CardActionArea } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { addCartItem, updateCartItem } from '../redux/actionCreators';
+import {
+	addCartItem,
+	addNotification,
+	updateCartItem,
+} from '../redux/actionCreators';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -44,6 +48,7 @@ const ShopItem = ({
 	price,
 	addCartItem,
 	updateCartItem,
+	addNotification,
 	cart,
 }) => {
 	const classes = useStyles();
@@ -63,6 +68,11 @@ const ShopItem = ({
 			};
 			addCartItem(newCartItem);
 		}
+		// Inform the user that his selection has been added to cart
+		addNotification({
+			message: `Added ${amount} ${name} to CART.`,
+			severity: 'info',
+		});
 		setAmount(0);
 	};
 
@@ -117,6 +127,8 @@ const mapStateToProps = (state) => {
 	return { cart: state.cart };
 };
 
-export default connect(mapStateToProps, { addCartItem, updateCartItem })(
-	ShopItem
-);
+export default connect(mapStateToProps, {
+	addCartItem,
+	updateCartItem,
+	addNotification,
+})(ShopItem);
