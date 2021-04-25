@@ -25,7 +25,7 @@ const CartItem = ({ children, name, image, price }) => {
 		<>
 			<Divider />
 			<ListItem className={classes.item}>
-				<Grid container justify='space-between'>
+				<Grid container justify='space-between' alignItems='center'>
 					<Grid item xs={6} sm={3}>
 						<Avatar alt={name} src={image} className={classes.image} />
 					</Grid>
