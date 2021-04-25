@@ -60,7 +60,7 @@ const OrderItem = ({ expanded, changeHandler, orderId, cart, total }) => {
 									image={image}
 									name={name}
 									price={price}>
-									{amount}
+									Quantity: {amount}
 								</CartItem>
 							);
 						})}
