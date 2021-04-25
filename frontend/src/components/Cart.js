@@ -40,7 +40,7 @@ const Cart = ({ cart, emptyCart, addNotification, addOrder }) => {
 	};
 	const renderAlternativeInfo = () => (
 		<p style={{ textAlign: 'center' }}>
-			It looks like you have no bread in your cart yet. See MENU and add some!
+			It looks like you have no bread in your basket. See the MENU and add some!
 		</p>
 	);
 
