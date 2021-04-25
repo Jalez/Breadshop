@@ -15,6 +15,14 @@ export const orderIdToCache = (id) => {
 };
 
 /**
+ * Used to retrieve the ids from local storage.
+ * @returns {Array}
+ */
+export const getCacheIds = () => {
+	return localStorage.getItem(breadOrderIdCache)?.split(',') || [];
+};
+
+/**
  * Removes the given Id from local storage breadOrderIdCache
  * @param {String} id
  */
