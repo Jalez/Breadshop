@@ -8,6 +8,7 @@ import AmountUpdater from './AmountUpdater';
 import CartItem from './CartItem';
 import FlexPaper from './FlexPaper';
 import { RESPONSE_AWAITING } from '../OrderStatusConstants';
+import { orderIdToCache } from '../utils/cacheOperations';
 const useStyle = makeStyles((theme) => ({
 	font: {
 		fontFamily: 'fantasy',
@@ -25,12 +26,17 @@ const Cart = ({ cart, emptyCart, addNotification, addOrder }) => {
 	const confirmHandler = (event) => {
 		const orderId = generateOrderId();
 		const status = RESPONSE_AWAITING;
+		// Pass on order details.
 		addOrder({ orderId, cart, total, status });
+		// Clear the cart.
 		emptyCart();
+		// Inform the user that the order is placed
 		addNotification({
 			message: `A new order placed! Order Id: ${orderId}`,
 			severity: 'info',
 		});
+		// Save this orders ID to cache
+		orderIdToCache(orderId);
 	};
 	const renderAlternativeInfo = () => (
 		<p style={{ textAlign: 'center' }}>
