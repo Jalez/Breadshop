@@ -28,14 +28,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const OrderItem = ({
-	expanded,
-	changeHandler,
-	orderId,
-	cart,
-	total,
-	status,
-}) => {
+const OrderItem = ({ expanded, changeHandler, orderId, cart, total }) => {
 	const classes = useStyles();
 	const handleChange = (event, isExpanded) => {
 		changeHandler(event, isExpanded);
@@ -48,8 +41,12 @@ const OrderItem = ({
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls={`order-${orderId}-content`}
 					id={`order-${orderId}-header`}>
-					<Typography className={classes.heading}>Id: {orderId}</Typography>
-					<Typography className={classes.secondaryHeading}>Date: {}</Typography>
+					<Typography component={'span'} className={classes.heading}>
+						Id: {orderId}
+					</Typography>
+					<Typography component={'span'} className={classes.secondaryHeading}>
+						Date: {}
+					</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
 					<List style={{ width: '100%' }}>

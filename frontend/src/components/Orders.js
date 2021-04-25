@@ -7,12 +7,11 @@ import {
 	Tab,
 	Tabs,
 	TextField,
-	Typography,
 } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
-import FlexPaper from './FlexPaper';
 import SearchIcon from '@material-ui/icons/Search';
+import FlexPaper from './FlexPaper';
 import OrderItem from './OrderItem';
 import {
 	RESPONSE_AWAITING,
@@ -29,11 +28,8 @@ const Order = ({ orders }) => {
 	};
 	const [expanded, setExpanded] = React.useState(false);
 	const handleExpandedChange = (panel) => (event, isExpanded) => {
-		console.log(isExpanded);
-		console.log(panel);
 		setExpanded(isExpanded ? panel : false);
 	};
-	console.log(expanded);
 
 	const renderAlternativeInfo = () => (
 		<p style={{ textAlign: 'center' }}>
@@ -128,11 +124,7 @@ const TabPanel = (props) => {
 			id={`simple-tabpanel-${index}`}
 			aria-labelledby={`simple-tab-${index}`}
 			{...other}>
-			{value === index && (
-				<Box p={3}>
-					<Typography>{children}</Typography>
-				</Box>
-			)}
+			{value === index && <Box p={3}>{children}</Box>}
 		</div>
 	);
 };
