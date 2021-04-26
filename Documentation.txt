@@ -161,22 +161,22 @@ FRONTSIDE "SUGGESTIONS" (OPTIONALS):
 [x] Save users order Ids to local storage
 [x] get order Ids from local storage 
 [x] Add a "refresh order status"-button to Order-component
+[x] notify user when a new item is added to cart.
+[x] notify user when a status of their order updates
+[x] Fix OrderItem-components presentation of Order cart to be more visually pleasing
 
 
 FRONTSIDE MUST TODO:
 [ ] Test communication works between server A and frontend
-[ ] get orders from server.
-[ ] post a new order to server 
-[ ] Test order-states update correctly.
+[ ] Test that get orders from server work (getOrder, getOrders).
+[ ] Test that posting a new order to server works (createOrder) 
+[ ] Test order-states update correctly (getOrder/redux).
 
 FRONTSIDE "SUGGESTIONS" (OPTIONALS):
 [ ] Add refresher(interval?) for requesting updates on unfinished orders 
-[ ] notify user when a new item is added to cart.
-[ ] notify user when a status of their order updates
 [ ] Portal the user from /cart-path to /orders-path when a new order is confirmed.
 [ ] Make it possible to remove items from cart (You can currently reduce the Amount of items, but not remove them completely)
 [ ] Implement search functionality to search for Order by id from the DB and/or frontside order-state.
 [ ] Implement "About us"-component properly
 [ ] Implement "Notifications"-button (top right corner) to list all notifications from that session, using notification-state 
-[ ] Fix OrderItem-components presentation of Order cart to be more visually pleasing
 [ ] Add option to re-order a completed order
