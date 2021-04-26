@@ -68,10 +68,12 @@ const OrderItem = ({ order, changeHandler, expanded, updateOrderState }) => {
 						<Typography component={'p'} className={classes.date}>
 							Date: {}
 						</Typography>
-						<IconButton variant='extended' onClick={handleUpdate}>
-							<UpdateIcon />
-							Update
-						</IconButton>
+						<Box>
+							Update:
+							<IconButton variant='extended' onClick={handleUpdate}>
+								<UpdateIcon />
+							</IconButton>
+						</Box>
 					</Box>
 				</AccordionSummary>
 				<AccordionDetails>
