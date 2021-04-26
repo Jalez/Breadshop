@@ -13,6 +13,7 @@ import {
 } from '../constants';
 
 // ORDER ACTION CREATORS
+
 /**
  *
  * @param {Object} newOrder
@@ -22,7 +23,7 @@ export const addOrder = (newOrder) => {
 	// Add thunk here too
 	return async (dispatch) => {
 		// Server A not yet implemented
-		// newOrder = createOrder(newOrder)
+		newOrder = await createOrder(newOrder);
 		dispatch({
 			type: ADD_ORDER,
 			payload: newOrder,
@@ -54,7 +55,7 @@ export const fetchOrders = () => {
 	return async (dispatch) => {
 		let orders;
 		// Server A not yet implemented- uncomment when done.
-		// orders = getOrders();
+		orders = await getOrders();
 		dispatch({
 			type: ADD_OLD_ORDERS,
 			payload: orders,
@@ -68,9 +69,13 @@ export const fetchOrders = () => {
  * @returns {Object} action
  */
 export const updateOrderState = (order) => {
-	return {
-		type: UPDATE_ORDER_STATE,
-		payload: order,
+	return async (dispatch) => {
+		const updatedInfo = await getOrder(order.orderid);
+		order.status = updatedInfo.status || order.status;
+		dispatch({
+			type: UPDATE_ORDER_STATE,
+			payload: order,
+		});
 	};
 };
 

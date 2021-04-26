@@ -23,7 +23,7 @@ export const getOrders = async (id) => {
 };
 
 /**
- * Sends an HTTP GET request with the help of axios to orderURL.
+ * Sends an HTTP POST request with the help of axios to orderURL.
  * @param {Object} order
  * @returns
  */

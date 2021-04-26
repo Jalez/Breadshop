@@ -4,11 +4,12 @@ import {
 	AppBar,
 	Box,
 	IconButton,
+	makeStyles,
 	Tab,
 	Tabs,
 	TextField,
 } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import SearchIcon from '@material-ui/icons/Search';
 import FlexPaper from './FlexPaper';
@@ -18,18 +19,32 @@ import {
 	RESPONSE_RECEIVED,
 	RESPONSE_READY,
 } from '../OrderStatusConstants';
+import { addNotification } from '../redux/actionCreators';
 
-const Order = ({ orders }) => {
-	// const classes = useStyles();
+const useStyles = makeStyles((theme) => ({
+	orders: {
+		margin: 10,
+	},
+}));
+
+const Order = ({ orders, addNotification }) => {
+	const classes = useStyles();
 	const [value, setValue] = React.useState(0);
+	const [expanded, setExpanded] = React.useState(false);
 
 	const handleTabChange = (event, newValue) => {
 		setValue(newValue);
 	};
-	const [expanded, setExpanded] = React.useState(false);
 	const handleExpandedChange = (panel) => (event, isExpanded) => {
 		setExpanded(isExpanded ? panel : false);
 	};
+
+	useEffect(() => {
+		addNotification({
+			message: `Orders have updated`,
+			severity: 'info',
+		});
+	}, [orders, addNotification]);
 
 	const renderAlternativeInfo = () => (
 		<p style={{ textAlign: 'center' }}>
@@ -42,33 +57,30 @@ const Order = ({ orders }) => {
 		let awaitingOrders = [];
 		let receivedOrders = [];
 		let readyOrders = [];
-		orders.forEach(({ orderId, cart, total, status }) => {
-			const order = (
+		orders.forEach((order) => {
+			const orderItem = (
 				<OrderItem
-					key={orderId}
-					changeHandler={handleExpandedChange(orderId)}
+					key={order.orderId}
+					changeHandler={handleExpandedChange(order.orderId)}
 					expanded={expanded}
-					orderId={orderId}
-					cart={cart}
-					total={total}
-					status={status}
+					order={order}
 				/>
 			);
-			if (status === RESPONSE_AWAITING) {
-				awaitingOrders.push(order);
-			} else if (status === RESPONSE_RECEIVED) {
-				receivedOrders.push(order);
+			if (order.status === RESPONSE_AWAITING) {
+				awaitingOrders.push(orderItem);
+			} else if (order.status === RESPONSE_RECEIVED) {
+				receivedOrders.push(orderItem);
 			} else {
-				readyOrders.push(order);
+				readyOrders.push(orderItem);
 			}
 		});
 		return (
-			<>
+			<div className={classes.orders}>
 				<AppBar position='static'>
 					<Tabs
 						value={value}
 						onChange={handleTabChange}
-						aria-label='simple tabs example'>
+						aria-label='Order states selection'>
 						<Tab label={RESPONSE_AWAITING} {...a11yProps(0)} />
 						<Tab label={RESPONSE_RECEIVED} {...a11yProps(1)} />
 						<Tab label={RESPONSE_READY} {...a11yProps(2)} />
@@ -83,7 +95,7 @@ const Order = ({ orders }) => {
 				<TabPanel value={value} index={2}>
 					{readyOrders}
 				</TabPanel>
-			</>
+			</div>
 		);
 	};
 
@@ -129,4 +141,4 @@ const TabPanel = (props) => {
 	);
 };
 
-export default connect(mapStateToProps, null)(Order);
+export default connect(mapStateToProps, { addNotification })(Order);

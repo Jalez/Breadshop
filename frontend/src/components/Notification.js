@@ -12,7 +12,7 @@ function Alert(props) {
 const Notification = ({ notification }) => {
 	const [open, setOpen] = useState(false);
 	const { message, severity } = notification[0];
-	const noticeDuration = 3000;
+	const noticeDuration = 1500;
 
 	// Fires whenever message changes.
 	useEffect(() => {

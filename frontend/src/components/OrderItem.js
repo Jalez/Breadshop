@@ -4,34 +4,47 @@ import {
 	Accordion,
 	AccordionDetails,
 	AccordionSummary,
+	Box,
+	Divider,
+	IconButton,
 	List,
+	ListItem,
 	makeStyles,
 	Typography,
 } from '@material-ui/core';
 import React from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import UpdateIcon from '@material-ui/icons/Update';
 import CartItem from './CartItem';
+import { updateOrderState } from '../redux/actionCreators';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
-	// Not in use
-	root: {
-		width: '100%',
-	},
-	heading: {
+	id: {
 		fontSize: theme.typography.pxToRem(15),
 		flexBasis: '33.33%',
 		flexShrink: 0,
 	},
-	secondaryHeading: {
+	status: {
+		fontWeight: 'bold',
+	},
+	date: {
 		fontSize: theme.typography.pxToRem(15),
 		color: theme.palette.text.secondary,
 	},
 }));
 
-const OrderItem = ({ expanded, changeHandler, orderId, cart, total }) => {
+const OrderItem = ({ order, changeHandler, expanded, updateOrderState }) => {
+	const { orderId, cart, total, status } = order;
+	console.log(cart);
 	const classes = useStyles();
 	const handleChange = (event, isExpanded) => {
 		changeHandler(event, isExpanded);
+	};
+
+	const handleUpdate = (e) => {
+		e.stopPropagation();
+		updateOrderState(order);
 	};
 
 	return (
@@ -41,17 +54,29 @@ const OrderItem = ({ expanded, changeHandler, orderId, cart, total }) => {
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls={`order-${orderId}-content`}
 					id={`order-${orderId}-header`}>
-					<Typography component={'span'} className={classes.heading}>
-						Id: {orderId}
-					</Typography>
-					<Typography component={'span'} className={classes.secondaryHeading}>
-						Date: {}
-					</Typography>
+					<Box
+						display='flex'
+						justifyContent='space-between'
+						alignItems='center'
+						style={{ width: '100%' }}>
+						<Typography component={'p'} className={classes.id}>
+							Id: {orderId}
+						</Typography>
+						<Typography component={'p'} className={classes.status}>
+							Status: {status}
+						</Typography>
+						<Typography component={'p'} className={classes.date}>
+							Date: {}
+						</Typography>
+						<IconButton variant='extended' onClick={handleUpdate}>
+							<UpdateIcon />
+							Update
+						</IconButton>
+					</Box>
 				</AccordionSummary>
 				<AccordionDetails>
 					<List style={{ width: '100%' }}>
 						{cart.map(({ id, amount, image, name, price }) => {
-							total += amount * price;
 							return (
 								<CartItem
 									key={id}
@@ -64,6 +89,9 @@ const OrderItem = ({ expanded, changeHandler, orderId, cart, total }) => {
 								</CartItem>
 							);
 						})}
+						<Divider />
+
+						<ListItem>Total: {total}</ListItem>
 					</List>
 				</AccordionDetails>
 			</Accordion>
@@ -71,4 +99,4 @@ const OrderItem = ({ expanded, changeHandler, orderId, cart, total }) => {
 	);
 };
 
-export default OrderItem;
+export default connect(null, { updateOrderState })(OrderItem);
