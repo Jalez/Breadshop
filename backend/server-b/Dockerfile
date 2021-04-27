@@ -24,6 +24,9 @@ RUN npm install
 
 # Bundle app source
 COPY . .
-
+# Copy wait-for-it.sh to /usr/wait-for-it.sh
+COPY utils/wait-for-it.sh /usr/wait-for-it.sh
+# Making /usr/wait-for-it.sh an executable
+RUN chmod +x /usr/wait-for-it.sh
 EXPOSE 8080
 CMD [ "node", "index.js" ]

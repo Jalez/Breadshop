@@ -18,6 +18,7 @@ import UpdateIcon from '@material-ui/icons/Update';
 import CartItem from './CartItem';
 import { updateOrderState } from '../redux/actionCreators';
 import { connect } from 'react-redux';
+import { RESPONSE_RECEIVED } from '../OrderStatusConstants';
 
 const useStyles = makeStyles((theme) => ({
 	id: {
@@ -44,6 +45,7 @@ const OrderItem = ({ order, changeHandler, expanded, updateOrderState }) => {
 
 	const handleUpdate = (e) => {
 		e.stopPropagation();
+		order.status = RESPONSE_RECEIVED;
 		updateOrderState(order);
 	};
 

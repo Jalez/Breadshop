@@ -70,8 +70,8 @@ export const fetchOrders = () => {
  */
 export const updateOrderState = (order) => {
 	return async (dispatch) => {
-		const updatedInfo = await getOrder(order.orderid);
-		order.status = updatedInfo.status || order.status;
+		// const updatedInfo = await getOrder(order.orderid);
+		// order.status = updatedInfo.status || order.status;
 		dispatch({
 			type: UPDATE_ORDER_STATE,
 			payload: order,
