@@ -182,8 +182,10 @@ FRONTSIDE "SUGGESTIONS" (OPTIONALS):
 [ ] Add option to re-order a completed order
 -------------------
 29.4.2021 Finishing the Backend - db.js, Order-controllers, OrderService, rabbitmq. 
+Connecting the backend and frontend. Testing that connection works. 
 -Jaakko R-
 -------------------
+BACKEND:
 [x] Modified db.js so that the database connects when server-A starts. 
 [x] Added working Functionality to addOrder, getOrderById, getOrders. 
 [x] Added working schema for order
@@ -191,3 +193,11 @@ FRONTSIDE "SUGGESTIONS" (OPTIONALS):
 [x] Fixed rabbitmq queue to work with given parameters properly. Modified rabbit-utils sendTask to use a callback function.
 [x] Added a new OrderService: updateOrder, which will update the status of the order once update goes through rabbitmq. 
 [x] tested with Postman that GET all, GET orderId and POST order works as they should.
+
+FRONTEND: 
+
+FRONTSIDE MUST TODO:
+[x] Test communication works between server A and frontend
+[x] Test that get orders from server work (getOrder, getOrders).
+[x] Test that posting a new order to server works (createOrder) 
+[x] Test order-states update correctly (getOrder/redux).
