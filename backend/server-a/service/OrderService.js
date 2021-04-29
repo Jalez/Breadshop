@@ -33,7 +33,7 @@ exports.getOrderById = function (orderId) {
 /**
  * Get a list of all orders. Empty array if no orders are found.
  *
- * returns ArrayOfOrders
+ * returns Array Of Orders
  **/
 exports.getOrders = function () {
 	return order.find();

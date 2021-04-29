@@ -180,3 +180,14 @@ FRONTSIDE "SUGGESTIONS" (OPTIONALS):
 [ ] Implement "About us"-component properly
 [ ] Implement "Notifications"-button (top right corner) to list all notifications from that session, using notification-state 
 [ ] Add option to re-order a completed order
+-------------------
+29.4.2021 Finishing the Backend - db.js, Order-controllers, OrderService, rabbitmq. 
+-Jaakko R-
+-------------------
+[x] Modified db.js so that the database connects when server-A starts. 
+[x] Added working Functionality to addOrder, getOrderById, getOrders. 
+[x] Added working schema for order
+[x] Added mongoose-api document handlers to OrderService.js
+[x] Fixed rabbitmq queue to work with given parameters properly. Modified rabbit-utils sendTask to use a callback function.
+[x] Added a new OrderService: updateOrder, which will update the status of the order once update goes through rabbitmq. 
+[x] tested with Postman that GET all, GET orderId and POST order works as they should.

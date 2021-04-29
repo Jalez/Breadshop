@@ -8,7 +8,7 @@ const MONGO_USERNAME = 'root';
 const MONGO_PASSWORD = 'pass';
 const MONGO_HOSTNAME = 'mongodb';
 const MONGO_PORT = '27017';
-const MONGO_DB = 'sharkinfo';
+const MONGO_DB = 'breadshop';
 
 const url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
 
