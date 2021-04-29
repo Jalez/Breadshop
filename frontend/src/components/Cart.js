@@ -26,8 +26,8 @@ const Cart = ({ cart, emptyCart, addNotification, addOrder }) => {
 	const confirmHandler = (event) => {
 		const orderId = generateOrderId();
 		const status = RESPONSE_AWAITING;
-		// Pass on order details.
-		addOrder({ orderId, cart, total, status });
+		// Pass on order details. cart missing
+		addOrder({ order: { orderId, cart, total, status } });
 		// Clear the cart.
 		emptyCart();
 		// Inform the user that the order is placed

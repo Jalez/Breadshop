@@ -2,35 +2,21 @@
 
 'use strict';
 
+const { RESPONSE_RECEIVED } = require('../constants/order');
+const order = require('../models/order');
+
 /**
  * Add an order for an sandwich
  *
  * place an order for a sandwich
- * returns Order
+ * returns the new order when succesfull
  **/
-/** OLD ORDER
- * Old order
- * exports.addOrder = function(order) {
- *  return new Promise(function(resolve, reject) {
- *    var examples = {};
- *    examples['application/json'] = {
- *  "sandwichId" : 6,
- *  "id" : 0,
- *  "status" : "ordered"
- *};
- *   if (Object.keys(examples).length > 0) {
- *      resolve(examples[Object.keys(examples)[0]]);
- *    } else {
- *      resolve();
- *    }
- *  });
- *}
- **/
+exports.addOrder = function (Order) {
+	const { orderId, total, cart } = Order.order;
+	// At this point, we can say that the backend has received the order
+	const status = RESPONSE_RECEIVED;
 
-exports.addOrder = function (order) {
-	return new Promise(function (resolve, reject) {
-		resolve(order);
-	});
+	return order.create({ orderId, total, status, cart });
 };
 
 /**
@@ -41,19 +27,7 @@ exports.addOrder = function (order) {
  * returns Order
  **/
 exports.getOrderById = function (orderId) {
-	return new Promise(function (resolve, reject) {
-		var examples = {};
-		examples['application/json'] = {
-			sandwichId: 6,
-			id: 0,
-			status: 'ordered',
-		};
-		if (Object.keys(examples).length > 0) {
-			resolve(examples[Object.keys(examples)[0]]);
-		} else {
-			resolve();
-		}
-	});
+	return order.findOne({ orderId });
 };
 
 /**
@@ -62,13 +36,19 @@ exports.getOrderById = function (orderId) {
  * returns ArrayOfOrders
  **/
 exports.getOrders = function () {
-	return new Promise(function (resolve, reject) {
-		var examples = {};
-		examples['application/json'] = '';
-		if (Object.keys(examples).length > 0) {
-			resolve(examples[Object.keys(examples)[0]]);
-		} else {
-			resolve();
-		}
-	});
+	return order.find();
+};
+
+/**
+ * Updates the given Order.
+ */
+
+exports.updateOrder = function (Order) {
+	const updatedResource = order
+		.findByIdAndUpdate(Order['_id'], Order, {
+			new: true,
+		})
+		.then((response) => {
+			console.log('updatedResource: ', response);
+		});
 };

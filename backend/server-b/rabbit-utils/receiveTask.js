@@ -9,7 +9,7 @@
 var amqp = require('amqplib');
 const sendTask = require('./sendTask.js');
 
-module.exports.getTask = function (rabbitHost, queueName) {
+module.exports.getTask = function (rabbitHost, queueName, callback) {
 	amqp
 		.connect('amqp://' + rabbitHost)
 		.then(function (conn) {
@@ -31,16 +31,17 @@ module.exports.getTask = function (rabbitHost, queueName) {
 				return ok;
 
 				function doWork(msg) {
-					var body = msg.content.toString();
-					console.log(" [x] Received '%s'", body);
-					var secs = body.split('.').length - 1;
-					//console.log(" [x] Task takes %d seconds", secs);
+					var body = JSON.parse(msg.content);
+					console.log(new Date(), ' [x] Received: ', body);
+					console.log(new Date(), ' [x] Its type: ', typeof body);
+					var secs = 10;
+					console.log(new Date(), ' [x] Task takes ' + secs + ' seconds');
 					setTimeout(function () {
 						console.log(new Date(), ' [x] Done');
 						ch.ack(msg);
-						// Send a notification that the order is finished.
-						sendTask.addTask('rapid-runner-rabbit', 'finished-order', body);
-					}, 10000);
+						// Call the callback.
+						callback(body);
+					}, secs * 1000);
 				}
 			});
 		})

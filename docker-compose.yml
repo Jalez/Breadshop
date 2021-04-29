@@ -16,7 +16,7 @@ services:
   # server-a is based on the Docker image the groups produce and build themselves.
   server-a:
     # Change the image information to match your server A image
-    image: larg/server-a:v0.4 # $USERNAME/$IMAGENAME:$TAG, something like group000/node-swagger:3a
+    image: larg/server-a:v0.5.4 # $USERNAME/$IMAGENAME:$TAG, something like group000/node-swagger:3a
     # 'depends_on' and 'command' are  to be used when used
     # with RabbitMQ service in this file. 'depends_on' must be set
     # to RabbitMQ service's name from this file, and 'command'
@@ -25,14 +25,6 @@ services:
     depends_on:
       - rapid-runner-rabbit
       - mongodb
-    # command:
-    #   [
-    #     './utils/wait-for-it.sh',
-    #     'rapid-runner-rabbit:5672',
-    #     '--',
-    #     'npm',
-    #     'start',
-    #   ]
     command: bash -c "/usr/wait-for-it.sh --timeout=0 rapid-runner-rabbit:5672 && npm start"
     build:
       dockerfile: Dockerfile
@@ -44,6 +36,7 @@ services:
       - '12345:8080'
     networks:
       - backend
+    restart: always
 
   # rabbitmq:3-management Docker Hub image.
   rapid-runner-rabbit:
@@ -66,17 +59,9 @@ services:
   # below, groups should set their values. Groups are free to
   # CRUD this set of instructions as they see fit.
   server-b:
-    image: larg/server-b:v0.4
+    image: larg/server-b:v0.4.6
     depends_on:
       - rapid-runner-rabbit
-    # command:
-    #   [
-    #     './utils/wait-for-it.sh',
-    #     'rapid-runner-rabbit:5672',
-    #     '--',
-    #     'node',
-    #     'index.js',
-    #   ]
     command: bash -c "/usr/wait-for-it.sh --timeout=0 rapid-runner-rabbit:5672 && node index.js"
     networks:
       - backend
