@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 const OrderItem = ({ order, changeHandler, expanded, updateOrderState }) => {
 	const { orderId, cart, total, status } = order;
-	console.log(cart);
 	const classes = useStyles();
 	const handleChange = (event, isExpanded) => {
 		changeHandler(event, isExpanded);
@@ -46,7 +45,7 @@ const OrderItem = ({ order, changeHandler, expanded, updateOrderState }) => {
 	const handleUpdate = (e) => {
 		e.stopPropagation();
 		order.status = RESPONSE_RECEIVED;
-		updateOrderState(order);
+		updateOrderState(orderId);
 	};
 
 	return (

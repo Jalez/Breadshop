@@ -2,7 +2,9 @@
 
 import {
 	AppBar,
+	Badge,
 	Box,
+	Button,
 	IconButton,
 	makeStyles,
 	Tab,
@@ -19,15 +21,19 @@ import {
 	RESPONSE_RECEIVED,
 	RESPONSE_READY,
 } from '../OrderStatusConstants';
-import { addNotification } from '../redux/actionCreators';
+import { addNotification, fetchOrders } from '../redux/actionCreators';
 
 const useStyles = makeStyles((theme) => ({
 	orders: {
 		margin: 10,
 	},
+	font: {
+		fontFamily: 'fantasy',
+		fontSize: '1.5em',
+	},
 }));
 
-const Order = ({ orders, addNotification }) => {
+const Order = ({ orders, addNotification, fetchOrders }) => {
 	const classes = useStyles();
 	const [value, setValue] = React.useState(0);
 	const [expanded, setExpanded] = React.useState(false);
@@ -37,6 +43,10 @@ const Order = ({ orders, addNotification }) => {
 	};
 	const handleExpandedChange = (panel) => (event, isExpanded) => {
 		setExpanded(isExpanded ? panel : false);
+	};
+
+	const handleGetAll = () => {
+		fetchOrders();
 	};
 
 	useEffect(() => {
@@ -49,7 +59,7 @@ const Order = ({ orders, addNotification }) => {
 	const renderAlternativeInfo = () => (
 		<p style={{ textAlign: 'center' }}>
 			It looks like you have no bread orders listed. See CART and confirm some
-			purchases, (or search for a bread order by its id! -- NOT IMPLEMENTED YET)
+			purchases, or get all orders from the database by clicking the button!
 		</p>
 	);
 
@@ -74,6 +84,22 @@ const Order = ({ orders, addNotification }) => {
 				readyOrders.push(orderItem);
 			}
 		});
+
+		const AWAITING = (
+			<Badge badgeContent={awaitingOrders.length} color='secondary'>
+				{RESPONSE_AWAITING}
+			</Badge>
+		);
+		const RECEIVED = (
+			<Badge badgeContent={receivedOrders.length} color='secondary'>
+				{RESPONSE_RECEIVED}
+			</Badge>
+		);
+		const READY = (
+			<Badge badgeContent={readyOrders.length} color='secondary'>
+				{RESPONSE_READY}
+			</Badge>
+		);
 		return (
 			<div className={classes.orders}>
 				<AppBar position='static'>
@@ -81,9 +107,9 @@ const Order = ({ orders, addNotification }) => {
 						value={value}
 						onChange={handleTabChange}
 						aria-label='Order states selection'>
-						<Tab label={RESPONSE_AWAITING} {...a11yProps(0)} />
-						<Tab label={RESPONSE_RECEIVED} {...a11yProps(1)} />
-						<Tab label={RESPONSE_READY} {...a11yProps(2)} />
+						<Tab label={AWAITING} {...a11yProps(0)} />
+						<Tab label={RECEIVED} {...a11yProps(1)} />
+						<Tab label={READY} {...a11yProps(2)} />
 					</Tabs>
 				</AppBar>
 				<TabPanel value={value} index={0}>
@@ -102,12 +128,14 @@ const Order = ({ orders, addNotification }) => {
 	return (
 		<FlexPaper header='ORDERS'>
 			<Box display='flex' justifyContent='center' alignItems='center'>
-				<form noValidate autoComplete='off'>
-					<TextField id='standard-basic' label='Search for order Id' />
-				</form>
-				<IconButton>
+				<Button
+					color='primary'
+					onClick={handleGetAll}
+					className={classes.font}
+					variant='contained'>
+					Get all orders
 					<SearchIcon />
-				</IconButton>
+				</Button>
 			</Box>
 
 			{orders.length > 0 ? renderOrderList() : renderAlternativeInfo()}
@@ -141,4 +169,6 @@ const TabPanel = (props) => {
 	);
 };
 
-export default connect(mapStateToProps, { addNotification })(Order);
+export default connect(mapStateToProps, { addNotification, fetchOrders })(
+	Order
+);

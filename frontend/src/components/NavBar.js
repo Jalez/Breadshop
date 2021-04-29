@@ -53,7 +53,7 @@ export default function NavBar({ children }) {
 						<Grid item xs={12} md={6}>
 							<Box display='flex' justifyContent='space-between'>
 								{children.map((child) => child)}
-								<Box>
+								{/* <Box>
 									<IconButton
 										aria-label='show 17 new notifications'
 										color='inherit'>
@@ -61,7 +61,7 @@ export default function NavBar({ children }) {
 											<NotificationsIcon />
 										</Badge>
 									</IconButton>
-								</Box>
+								</Box> */}
 							</Box>
 						</Grid>
 					</Grid>

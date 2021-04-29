@@ -23,7 +23,7 @@ export const addOrder = (newOrder) => {
 	// Add thunk here too
 	return async (dispatch) => {
 		// Server A not yet implemented
-		newOrder = await createOrder(newOrder);
+		await createOrder(newOrder);
 		dispatch({
 			type: ADD_ORDER,
 			payload: newOrder,
@@ -68,13 +68,14 @@ export const fetchOrders = () => {
  * @param {Object} order
  * @returns {Object} action
  */
-export const updateOrderState = (order) => {
+export const updateOrderState = (orderId) => {
 	return async (dispatch) => {
-		// const updatedInfo = await getOrder(order.orderid);
+		const updatedInfo = await getOrder(orderId);
 		// order.status = updatedInfo.status || order.status;
+		// console.log(updatedInfo);
 		dispatch({
 			type: UPDATE_ORDER_STATE,
-			payload: order,
+			payload: updatedInfo,
 		});
 	};
 };

@@ -27,7 +27,8 @@ export const getOrders = async (id) => {
  * @param {Object} order
  * @returns
  */
-export const createOrder = async (order) => {
-	const response = await axios.post(orderURL, order);
-	return response.data;
+export const createOrder = async (newOrder) => {
+	const response = await axios.post(orderURL, { order: newOrder });
+	const { order } = response.data;
+	return order;
 };

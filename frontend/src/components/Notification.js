@@ -16,7 +16,6 @@ const Notification = ({ notification }) => {
 
 	// Fires whenever message changes.
 	useEffect(() => {
-		console.log('gets here');
 		if (notification[0].message) {
 			setOpen(true);
 		}

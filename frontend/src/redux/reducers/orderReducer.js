@@ -16,9 +16,11 @@ const orderReducer = (state = [], action) => {
 		case REMOVE_ORDER:
 			return state.filter((item) => item.id !== action.payload.id);
 		case UPDATE_ORDER_STATE:
-			const index = state.findIndex((item) => item.id === action.payload.id);
-			state[index].status = action.payload.status;
-			return [...state];
+			const order = action.payload;
+			return [
+				...state.filter((order) => order.orderId !== action.payload.orderId),
+				order,
+			];
 		default:
 			return state;
 	}
