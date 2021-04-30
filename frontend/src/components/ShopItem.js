@@ -84,11 +84,7 @@ const ShopItem = ({
 			<CardActionArea onClick={handleCartClick}>
 				<CardMedia className={classes.media} image={image} title={name} />
 				<CardContent>
-					<Typography
-						gutterBottom
-						variant='h5'
-						component='h2'
-						style={{ fontFamily: 'fantasy' }}>
+					<Typography gutterBottom variant='h5' component='h2'>
 						<Box display='flex' justifyContent='space-between'>
 							<Box>{name + ', '}</Box>
 							<Box>{price + ' €'}</Box>
