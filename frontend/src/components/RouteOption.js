@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	font: {
-		fontFamily: 'fantasy, roboto',
+		fontFamily: 'roboto',
 	},
 }));
 

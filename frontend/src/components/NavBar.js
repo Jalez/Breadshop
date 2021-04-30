@@ -21,9 +21,6 @@ const useStyles = makeStyles((theme) => ({
 	menuButton: {
 		marginRight: theme.spacing(2),
 	},
-	font: {
-		fontFamily: 'fantasy, roboto',
-	},
 	title: {},
 }));
 
@@ -43,9 +40,7 @@ export default function NavBar({ children }) {
 						<Grid item xs={12} md={6}>
 							<Box display='flex' justifyContent='center'>
 								<Box>
-									<Typography className={classes.font} variant='h2'>
-										BREADSHOP
-									</Typography>
+									<Typography variant='h2'>BREADSHOP</Typography>
 								</Box>
 							</Box>
 						</Grid>

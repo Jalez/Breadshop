@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 		background: 'rgba(255, 255, 255,0.92)',
 	},
 	header: {
-		fontFamily: 'fantasy, roboto',
+		fontFamily: 'roboto',
 		textAlign: 'center',
 		marginBottom: 30,
 	},
