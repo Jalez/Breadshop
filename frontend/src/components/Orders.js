@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 		margin: 10,
 	},
 	font: {
-		fontFamily: 'fantasy',
+		fontFamily: 'fantasy, roboto',
 		fontSize: '1.5em',
 	},
 }));

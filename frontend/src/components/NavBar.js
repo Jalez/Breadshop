@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 		marginRight: theme.spacing(2),
 	},
 	font: {
-		fontFamily: 'fantasy',
+		fontFamily: 'fantasy, roboto',
 	},
 	title: {},
 }));

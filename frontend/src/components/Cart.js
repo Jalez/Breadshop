@@ -11,7 +11,7 @@ import { RESPONSE_AWAITING } from '../OrderStatusConstants';
 import { orderIdToCache } from '../utils/cacheOperations';
 const useStyle = makeStyles((theme) => ({
 	font: {
-		fontFamily: 'fantasy',
+		fontFamily: 'fantasy, roboto',
 	},
 }));
 
