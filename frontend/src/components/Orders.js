@@ -104,7 +104,10 @@ const Order = ({ orders, addNotification, fetchOrders }) => {
 					<Tabs
 						value={value}
 						onChange={handleTabChange}
-						aria-label='Order states selection'>
+						aria-label='Order states selection'
+						variant='scrollable'
+						indicatorColor='secondary'
+						scrollButtons='on'>
 						<Tab label={AWAITING} {...a11yProps(0)} />
 						<Tab label={RECEIVED} {...a11yProps(1)} />
 						<Tab label={READY} {...a11yProps(2)} />

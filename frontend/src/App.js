@@ -11,6 +11,7 @@ import { getImage } from './utils/getImage';
 import Orders from './components/Orders';
 import NavBar from './components/NavBar';
 import RouteButton from './components/RouteOption';
+import { connect } from 'react-redux';
 
 const theme = createMuiTheme({
 	palette: {
@@ -30,7 +31,7 @@ const useStyle = makeStyles((theme) => ({
 	},
 }));
 
-function App() {
+function App({ orders, cart }) {
 	const classes = useStyle();
 	return (
 		<ThemeProvider theme={theme}>
@@ -38,8 +39,8 @@ function App() {
 				<div className={classes.root}>
 					<NavBar>
 						<RouteButton path='/' title='MENU' />
-						<RouteButton path='/cart' title='CART' />
-						<RouteButton path='/orders' title='ORDERS' />
+						<RouteButton path='/cart' title='CART' state={cart} />
+						<RouteButton path='/orders' title='ORDERS' state={orders} />
 						<RouteButton path='/about' title='ABOUT' />
 					</NavBar>
 					<Switch>
@@ -55,4 +56,8 @@ function App() {
 	);
 }
 
-export default App;
+const mapStateToProps = (state) => {
+	return { orders: state.orders, cart: state.cart };
+};
+
+export default connect(mapStateToProps, null)(App);

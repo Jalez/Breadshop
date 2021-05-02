@@ -2,15 +2,7 @@
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-	AppBar,
-	// Badge,
-	Box,
-	Grid,
-	// IconButton,
-	Toolbar,
-	Typography,
-} from '@material-ui/core';
+import { AppBar, Box, Grid, Toolbar, Typography } from '@material-ui/core';
 // import NotificationsIcon from '@material-ui/icons/Notifications';
 
 const useStyles = makeStyles((theme) => ({

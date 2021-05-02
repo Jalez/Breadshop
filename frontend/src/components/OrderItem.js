@@ -66,9 +66,6 @@ const OrderItem = ({ order, changeHandler, expanded, updateOrderState }) => {
 						<Typography component={'p'} className={classes.status}>
 							Status: {status}
 						</Typography>
-						<Typography component={'p'} className={classes.date}>
-							Date: {}
-						</Typography>
 						<Box>
 							Update:
 							<IconButton variant='extended' onClick={handleUpdate}>
