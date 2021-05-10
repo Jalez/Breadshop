@@ -2,7 +2,7 @@
 
 # Breadshop
 
-![High level view of the system architecture](./documentation-assets/high-level-view.jpg)
+![High level view of the system architecture](./documentation-assets/high-level-view.JPG)
 
 **Figure 0**: High-level view of the system architecture
 
@@ -165,10 +165,10 @@ Once the frontend and backend is up, the following processes are available to th
 
 The following steps from 1-8 accomplish each of the above processes.
 
-![Steps 1-2: 1. Click on the + to select how many sandwiches you want. 2. Add the quantity to cart by clicking the now-active cart-icon.](./documentation-assets/frontend-nav.jpg)
-![Steps 3-4: Click the cart button at the NavBar to open the cart-component. Confirm the order at the "confirm order"-button.](./documentation-assets/frontend-nav-2.jpg)
-![Steps 5-6: Open the orders-component by finding the orders-link at the navbar. Update the status of the order by clicking the "update"-icon.](./documentation-assets/frontend-nav-3.jpg)
-![Steps 7-8: If the status is updated, it moves to another tab, use arrows if necessary to find the correct tab. To get all orders in the database, click "get all orders."](./documentation-assets/frontend-nav-4.jpg)
+![Steps 1-2: 1. Click on the + to select how many sandwiches you want. 2. Add the quantity to cart by clicking the now-active cart-icon.](./documentation-assets/frontend-nav.JPG)
+![Steps 3-4: Click the cart button at the NavBar to open the cart-component. Confirm the order at the "confirm order"-button.](./documentation-assets/frontend-nav-2.JPG)
+![Steps 5-6: Open the orders-component by finding the orders-link at the navbar. Update the status of the order by clicking the "update"-icon.](./documentation-assets/frontend-nav-3.JPG)
+![Steps 7-8: If the status is updated, it moves to another tab, use arrows if necessary to find the correct tab. To get all orders in the database, click "get all orders."](./documentation-assets/frontend-nav-4.JPG)
 
 #### Frontend extra: **Redux-dev-tools**
 
