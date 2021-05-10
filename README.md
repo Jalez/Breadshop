@@ -2,8 +2,8 @@
 ## Documentation of the system
 ### Project group information
 #### Group members
-Jaakko Rajala K428219 jaakko.rajala@tuni.fi
-Joni Nikki 431160 joni.nikki@tuni.fi 
+Jaakko Rajala jaakko.rajala@tuni.fi
+Joni Nikki joni.nikki@tuni.fi 
 
 ### Which group member(s) will be responsible for what
 * Jaakko Rajala: Frontend and backend implementation, documentation
