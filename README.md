@@ -23,6 +23,7 @@ Joni Nikki joni.nikki@tuni.fi
 ## System architecture
 
 ![Picture of components and their roles](./documentation-assets/component-uml.JPG)
+
 **Figure 1.** The UML graph representing the relationships of the different components.
 
 The project incorporated much of the theory that was entertained in the Web Development- Architecture course held by [Tampere University](https://www.tuni.fi/opiskelijanopas/opintotiedot/opintojaksot/otm-fd2ca0d6-480a-40ba-b6d7-93fc3221704b?year=2020&q=null)- including component containerization and microservice architecture, asynchronous message brokering between two services as well as a dynamically rendered single-page application using a modern framework (React) in the frontend.
@@ -56,6 +57,7 @@ Server B receives the messages from “received-orders” message queue through 
 #### RabbitMQ
 
 ![RabbitMq-management](./documentation-assets/rabbitmq.JPG)
+
 **Picture 1**: RabbitMQ-management
 
 A message broker transmitting messages between Server-A and Server-B. It uses the AMQP protocol as a means of communication - see the section under _used protocols_. RabbitMQ management is accessible at port 5672 through HTTP, user name “guest”, password “guest”. .
@@ -65,6 +67,7 @@ A message broker transmitting messages between Server-A and Server-B. It uses th
 Frontend
 
 ![Breadshop main page](./documentation-assets/breadshop-main.JPG)
+
 **Picture 2** : BREADSHOP-frontend
 
 To access the frontend, use port 3000 on localhost. As seen from **Figure 1**, frontend interfaces with server-A through an HTTP REST API.
@@ -72,6 +75,7 @@ To access the frontend, use port 3000 on localhost. As seen from **Figure 1**, f
 #### MongoDB
 
 ![Breadshop main page](./documentation-assets/mongo-express.JPG)
+
 **Picture 3**. Mongo Express administrative interface.
 
 MongoDB stores order info as supplied/retrieved by server-A. It uses the MongoDB protocol in interfacing with server-A and MongoDB express. MongoDB was exposed through the port 27017.
